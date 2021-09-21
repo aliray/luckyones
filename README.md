@@ -47,5 +47,5 @@ npm run lint:fix
 ### Test code
 
 ```bash
-npm test, now have no test case
+npm test, now have no test case v0.1.0
 ```
