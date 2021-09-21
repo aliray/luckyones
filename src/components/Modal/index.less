@@ -1,0 +1,82 @@
+@import '~antd/es/style/themes/default.less';
+
+// @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+:global {
+    .ant-modal-header {
+        padding      : 16px 24px;
+        color        : @primary-color;
+        background   : #F0EEF4;
+        border-bottom: 1px solid rgb(215, 217, 223);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .ant-modal-title {
+        margin     : 0;
+        color      : @primary-color;
+        font-weight: bold;
+        font-size  : 16px;
+        line-height: 22px;
+        word-wrap  : break-word;
+    }
+
+    .ant-modal-content {
+        position        : relative;
+        background-color: #fff;
+        background-clip : padding-box;
+        border          : 0;
+        border-radius   : 20px;
+        box-shadow      : 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+        pointer-events  : auto;
+    }
+
+    .ant-input-number-handler-wrap {
+        display: none;
+    }
+}
+
+
+// user modal
+
+.user_modal {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    width          : 100%;
+}
+
+.modal_row {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    position       : relative;
+    width          : 100%;
+    color          : gray;
+    padding        : 10px;
+}
+
+
+
+.user_modal_content {
+    display         : flex;
+    flex-direction  : column;
+    padding         : 10px;
+    width           : 100%;
+    background-color: #FFF;
+}
+
+.input_modal {
+    width              : 100%;
+    display            : flex;
+    flex-direction     : column;
+    min-height         : 60px;
+    border-radius      : 20px;
+    border             : 1px solid rgb(215, 217, 223);
+    background-color   : rgb(247, 248, 250);
+    align-items        : center;
+    justify-content    : center;
+    padding-top        : 10px;
+    padding-bottom     : 10px;
+    // box-shadow      : rgb(237 75 158) 0px 0px 0px 1px, rgb(237 75 158 / 20%) 0px 0px 0px 4px;
+}

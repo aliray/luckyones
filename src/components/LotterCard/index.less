@@ -1,0 +1,125 @@
+@import '~antd/es/style/themes/default.less';
+
+.lottery_container {
+    position        : relative;
+    display         : flex;
+    flex-direction  : column;
+    // max-width: 1024px;
+    min-width       : 400px;
+    min-height      : 300px;
+    align-items     : center;
+    justify-content : flex-start;
+    border-radius   : 30px;
+    color           : #280D5F;
+    box-shadow      : 0px 10px 30px -5px grey;
+    transition      : box-shadow 0.5s, opacity 0.5s;
+    will-change     : transform;
+    border          : 0.5px solid #F0EEF3;
+    background-color: #fff;
+    font-size       : 15px;
+    font-weight     : bold;
+}
+
+@media (min-width: @screen-md-min) {
+    .lottery_container {
+        width: 650px;
+    }
+}
+
+.header {
+    display                : flex;
+    position               : relative;
+    background-color       : #F0EEF4;
+    width                  : 100%;
+    border-top-left-radius : 30px;
+    border-top-right-radius: 30px;
+    // max-height: 60px;
+    // height: 50px;
+    // align-items: center;
+    padding                : 30px;
+}
+
+.round_font {
+    font-size : 25px;
+    color     : #280D5F;
+    text-align: left;
+}
+
+.round_time {
+    font-size  : 13px;
+    color      : #280D5F;
+    font-weight: lighter;
+    text-align : left;
+}
+
+
+.content {
+    position        : relative;
+    display         : flex;
+    flex-direction  : column;
+    background-color: #FFF;
+    width           : 100%;
+    // max-height: 60px;
+    min-height      : 200px;
+    align-items     : center;
+    padding         : 30px;
+}
+
+@keyframes buyBtnRotateY {
+    0% {
+        transform: rotate(-7deg);
+    }
+
+    100% {
+        transform: rotate(7deg);
+    }
+}
+
+.buyBtnDiv {
+    animation                  : buyBtnRotateY 1.5s infinite;
+    animation-direction        : alternate;
+    -webkit-animation-direction: alternate;
+    /* Safari 和 Chrome */
+}
+
+.title {
+    font-size : 20px;
+    text-align: left;
+}
+
+.footer {
+    display                      : flex;
+    flex-direction               : column;
+    width                        : 100%;
+    // text-align: center;
+    padding                      : 30px;
+    // padding-top               : 10px;
+    /* background-color          : grey; */
+    border-bottom-left-radius    : 30px;
+    border-bottom-right-radius   : 30px;
+    border-top                   : 2px solid #F0EEF4;
+    background-color             : #F0EEF4;
+}
+
+.rewards_precents {
+    display           : flex;
+    flex-direction    : column;
+    // justify-content: flex-start;
+    // align-items: center;
+    text-align        : left;
+}
+
+.rewards_ruletips {
+    font-size  : 15px;
+    color      : @primary-color;
+    font-weight: lighter;
+    text-align : left;
+
+}
+
+.rewards_rewards {
+    font-size : large;
+    color     : #280D5F;
+    text-align: left;
+    font-weight: lighter;
+}
