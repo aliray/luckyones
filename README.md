@@ -1,4 +1,4 @@
-# Lottery Demo Case
+# Lottery Demo Case fork from pancake lottery using for learn eth dapps dev
 
 ## Environment Prepare
 
