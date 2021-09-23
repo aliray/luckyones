@@ -1,13 +1,11 @@
-import { Badge, Tooltip, Popconfirm } from 'antd';
+import { Badge, Popconfirm } from 'antd';
 import React from 'react';
 import { HiOutlineTicket } from 'react-icons/hi';
 import { useModel } from 'umi';
-import styles from './index.less';
 
-const TicketsCount: React.FC<{ count: number }> = ({ count, ...props }) => {
+const TicketsCount: React.FC<{ count: number }> = ({ count }) => {
 
-    const { openUinm } = useModel("uimodel")
-
+    const { closeTicketsUi } = useModel("uimodel")
 
     return (
         <Popconfirm
@@ -22,7 +20,7 @@ const TicketsCount: React.FC<{ count: number }> = ({ count, ...props }) => {
         >
             <Badge count={count} showZero color="cyan">
                 <a>
-                    <HiOutlineTicket size="25px" color="#280D5F" onClick={() => { openUinm() }} />
+                    <HiOutlineTicket size="25px" color="#280D5F" onClick={() => { closeTicketsUi() }} />
                 </a>
             </Badge>
         </Popconfirm>

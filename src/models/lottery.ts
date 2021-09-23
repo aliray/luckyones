@@ -63,21 +63,24 @@ export default function lottery() {
         });
     }
 
+    // lottery contract info
+    const [balanceOfUsdt, setBalanceOfUsdt] = useState("")
+    const [maxTickets, setMaxTickets] = useState(0)
+    const [symbol, setSymbol] = useState("")
+    const [maxRange, setMaxRange] = useState(0)
+    const [allowance, setAllowance] = useState(0)
+    const [lottoSize, setLottoSize] = useState(0)
+
     // fetch lotterys  onces
     useEffect(() => {
-
         setLoadingLottery(true);
         queryLotteries();
         setLoadingLottery(false);
-
         const interval = setInterval(async () => {
             queryCurrentLotteries();
         }, 10000)
         return () => clearInterval(interval)
-
     }, []);
-
-
 
     return {
         loadingLottery,

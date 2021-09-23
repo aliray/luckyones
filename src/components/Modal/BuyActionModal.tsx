@@ -10,6 +10,7 @@ import { NoticeError, NoticeSuccess } from '../Notice'
 import styles from './index.less'
 import TicketsCount from '../TicketsCount'
 import Web3 from 'web3'
+import SalesInfo from '../SalesInfo'
 
 const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...props }) => {
     const intl = useIntl()
@@ -22,38 +23,37 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
     const { currentLottery, currentLotteryId } = useModel("lottery")
 
     const [balanceOfUsdt, setBalanceOfUsdt] = useState("")
-    const [tickets, setTickets] = useState(0)
     const [maxTickets, setMaxTickets] = useState(0)
-    const [cost, setCost] = useState(0)
     const [symbol, setSymbol] = useState("")
     const [maxRange, setMaxRange] = useState(0)
-    const [lottoSize, setLottoSize] = useState(0)
     const [allowance, setAllowance] = useState(0)
-    const [approved, setApproved] = useState(false)
-    const [payments, setPayments] = useState(false)
-    const [approving, setApproving] = useState(false)
+    const [lottoSize, setLottoSize] = useState(0)
 
+    const {
+        tickets, cost, approved, approving, payloading,
+        setTickets, setCost,
+        setApproved, setApproving, setPayloading
+    } = useModel("uimodel")
     // const [, setBalanceOfUsdt] = useState(0)
     const paysucccess = async () => {
         NoticeSuccess("操作成功.")
-        setPayments(false)
+        setPayloading(false)
         setApproving(false)
-        setTickets(null)
+        setTickets(0)
         setCost(0)
     }
 
     const payerror = async () => {
         NoticeError("操作失败.")
-        setPayments(false)
+        setPayloading(false)
         setApproving(false)
-
     }
 
     const payTickets = async () => {
         try {
             if (address && web3) {
                 if (tickets > 0 && tickets <= maxTickets && cost <= Number(balanceOfUsdt)) {
-                    setPayments(true)
+                    setPayloading(true)
                     const numbers = generateLottoNumbers({
                         numberOfTickets: tickets,
                         lottoSize,
@@ -190,8 +190,9 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
     }
 
     const inputOnChange = async (e) => {
-        setTickets(Number(e || 0))
-        setCost(Number(currentLottery.ticketPrice) * Number(e || 0))
+        const value = Number(e || 0)
+        setTickets(value)
+        setCost(Number(currentLottery.ticketPrice) * value)
     }
 
     useEffect(() => {
@@ -201,13 +202,14 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
         querySizeOfLotteryNubers()
         queryAllowance()
         queryBalanceofUsdt()
-    }, [tickets, address])
+    }, [address])
 
 
     useEffect(() => {
         setTickets(0)
         setCost(0)
     }, [visible])
+
 
     return (
         <Modal
@@ -223,9 +225,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                     bordered={false}
                     min={0}
                     precision={0}
-                    max={maxTickets}
-                    // defaultValue={1}
-                    // controls={false}
+                    max={10000}
                     style={{ fontSize: "30px", color: "#280D5F", marginRight: "auto", width: "50%" }}
                     onChange={inputOnChange}
                     value={tickets}
@@ -258,7 +258,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                                                 tickets > maxTickets ||
                                                 (cost - Number(balanceOfUsdt)) > 0
                                             }
-                                            loading={payments}
+                                            loading={payloading}
                                             block
                                             style={{
                                                 height: "45px",
@@ -301,21 +301,11 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                                 >
                                     连接钱包
                                 </Button>
-
                             )
-
                     }
                 </div>
-
             </div>
-            <Typography.Text
-                type="secondary"
-                style={{ fontSize: "13px", textAlign: "left" }}>
-                立即购买会选择随机号码，且您的彩票中无重复号码,最多购置
-                <MoneyTipsNormal money={maxTickets} unit="张" />
-                ,单价
-                <MoneyTipsNormal money={currentLottery.ticketPrice || 0} unit={symbol} />.
-            </Typography.Text>
+            <SalesInfo maxTickets symbol ticketPrice={currentLottery.ticketPrice} />
         </Modal>
     )
 }

@@ -22,10 +22,7 @@ const LotteryCard: React.FC = (props) => {
                         <LotteryCardContent />
                         <LotteryCardFooter />
                     </> :
-                    <Empty
-                        style={{ margin: "auto" }}
-                        description="暂无彩票数据,请等待开奖!"
-                    />
+                    <Empty style={{ margin: "auto" }} description="暂无彩票数据,请等待开奖!" />
             }
         </div >
     );

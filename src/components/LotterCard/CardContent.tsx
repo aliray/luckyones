@@ -5,7 +5,7 @@ import { useIntl, useModel } from 'umi';
 import BuyActionModal from '../Modal/BuyActionModal';
 import TicketsCount from '../TicketsCount';
 import Lotteryballs from '../Tools/Lotteryballs';
-import RewardsTips from '../Tools/rewardsTips';
+import RewardsTips from '../Tools/RewardsTips';
 import styles from './index.less';
 
 const LotteryCardContent: React.FC = (props) => {
@@ -30,10 +30,7 @@ const LotteryCardContent: React.FC = (props) => {
         }));
 
     const finalNumber = [];
-    const [modalUi, triggerModal] = useState(false);
-    const buyTicketsAction = () => {
-        triggerModal(true);
-    }
+    const { purchaseVisible, openPurchaseModalUi, closePurchaseModalUi } = useModel("uimodel");
 
     return (
         <>
@@ -100,23 +97,33 @@ const LotteryCardContent: React.FC = (props) => {
                             >
                                 <Space size="large" align="center">
                                     <span className={styles.title}>您的彩票</span>
-                                    <TicketsCount count={getUserTicketsCount(curRenderLottery?.id) || 0} />
+                                    <span>
+                                        您有
+                                        <a style={{
+                                            // color: "gold",
+                                            fontSize: "large"
+                                        }}>
+                                            &nbsp;{getUserTicketsCount(curRenderLottery?.id) || 0}&nbsp;
+                                        </a>
+                                        张彩票
+                                    </span>
                                     {
                                         !(status?.provider?.isConnected() && status.address) ?
                                             <Button type="primary" size="large" shape="round" onClick={openWeb3Modal}>
                                                 {intl.formatMessage({ id: 'pages.wallet.connectTips' })}
                                             </Button>
                                             :
-                                            <Button type="primary" size="large" shape="round" onClick={buyTicketsAction}>
+                                            <Button type="primary" size="large" shape="round" onClick={openPurchaseModalUi}>
                                                 {intl.formatMessage({ id: 'pages.wallet.buyButtonTips' })}
                                             </Button>
                                     }
+                                    {/* <TicketsCount count={getUserTicketsCount(curRenderLottery?.id) || 0} /> */}
                                 </Space>
                             </div> : null
                     }
                 </Skeleton>
             </div>
-            <BuyActionModal visible={modalUi} cancel={triggerModal} />
+            <BuyActionModal visible={purchaseVisible} cancel={closePurchaseModalUi} />
         </>
     );
 };
