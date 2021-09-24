@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Footer, Header } from '@/components/Common';
-import NavNotice from '@/components/Common/navNotice';
+import NavNotice from '@/components/Common/NavNotice';
 import RadioMenu from '@/components/RadioButton';
 import React from 'react';
 import { useModel } from 'umi';
 import styles from './index.less';
-
+import moment from 'moment';
 
 const Lottery: React.FC = (props) => {
     const menus = [
@@ -22,7 +22,7 @@ const Lottery: React.FC = (props) => {
             <Header />
             <div className={styles.content}>
                 {
-                    curRenderLottery && <NavNotice />
+                    curRenderLottery && moment(Number(curRenderLottery?.endTime)).isAfter(moment.now()) && <NavNotice />
                 }
                 <RadioMenu values={menus} />
                 {

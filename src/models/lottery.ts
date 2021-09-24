@@ -1,13 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
 import { getGraphLotteries } from '@/services/api';
 import _ from 'lodash';
-import { sleep } from '@/utils/tools';
-
+import { useModel } from 'umi'
+import { callViewOfLotteryContract, callViewOfUsdtContract } from '@/utils/web3Utils'
+import { NETWORK_TYPE, USDT_CONTRACT, Lottery_CONTRACT, MAX_APPROVED } from '@/utils/constants'
+import { generateLottoNumbers, gweiToDecimalNumber, numberToGweiBN, gweiIsltzero, intervalTimeout } from '@/utils/tools'
 
 export default function lottery() {
 
+    // lotteries info
     const [lotteries, setLotteries] = useState([]);
     const [currentLottery, setCurrentLottery] = useState(null);
     const [curRenderLottery, setCurRenderLottery] = useState(null);
@@ -63,14 +67,6 @@ export default function lottery() {
         });
     }
 
-    // lottery contract info
-    const [balanceOfUsdt, setBalanceOfUsdt] = useState("")
-    const [maxTickets, setMaxTickets] = useState(0)
-    const [symbol, setSymbol] = useState("")
-    const [maxRange, setMaxRange] = useState(0)
-    const [allowance, setAllowance] = useState(0)
-    const [lottoSize, setLottoSize] = useState(0)
-
     // fetch lotterys  onces
     useEffect(() => {
         setLoadingLottery(true);
@@ -82,6 +78,48 @@ export default function lottery() {
         return () => clearInterval(interval)
     }, []);
 
+
+    // lottery contract info
+    const { address, web3 } = useModel("web3Model", (ret) => ({
+        address: ret.status?.address,
+        web3: ret.status?.web3,
+    }))
+
+    // const [contractInfo, setContractInfo] = useState({})
+    const [balanceOfUsdt, setBalanceOfUsdt] = useState("")
+    const [maxTickets, setMaxTickets] = useState(0)
+    const [symbol, setSymbol] = useState("")
+    const [maxRange, setMaxRange] = useState(0)
+    const [allowance, setAllowance] = useState(0)
+    const [lottoSize, setLottoSize] = useState(0)
+
+    const queryContractInfo = async () => {
+        if (address && web3) {
+            const _usdtBalanceOf = await callViewOfUsdtContract("balanceOf", NETWORK_TYPE, web3, address)
+            const _symbol = await callViewOfUsdtContract("symbol", NETWORK_TYPE, web3)
+            const _maxTickets = await callViewOfLotteryContract("maxNumberTicketsPerBatch", NETWORK_TYPE, web3)
+            const _maxRange = await callViewOfLotteryContract("maxValidRange", NETWORK_TYPE, web3)
+            const _lottoSize = await callViewOfLotteryContract("sizeOfLotteryNubers", NETWORK_TYPE, web3)
+            const _allowance = await
+                callViewOfUsdtContract(
+                    "allowance",
+                    NETWORK_TYPE,
+                    web3, address,
+                    Lottery_CONTRACT[NETWORK_TYPE].address
+                )
+            setBalanceOfUsdt(gweiToDecimalNumber(_usdtBalanceOf || "0"))
+            setSymbol(String(_symbol || ""))
+            setMaxTickets(Number(Number(_maxTickets).toFixed(0)))
+            setMaxRange(Number(_maxRange))
+            setLottoSize(Number(_lottoSize))
+            setAllowance(Number(gweiToDecimalNumber(_allowance || "0")))
+        }
+    }
+
+    useEffect(() => {
+        queryContractInfo()
+    }, [address])
+
     return {
         loadingLottery,
         currentLotteryId,
@@ -90,6 +128,7 @@ export default function lottery() {
         lotteries,
         currentRewards,
         currentRenderRewards,
+        balanceOfUsdt, maxTickets, symbol, maxRange, allowance, lottoSize,
         queryLotteries,
         setLoadingLottery,
         nextLottery,
