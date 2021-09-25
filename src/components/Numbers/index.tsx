@@ -1,27 +1,26 @@
-import { Divider, InputNumber, List, Space } from 'antd';
+import { List, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { HiOutlineTicket } from 'react-icons/hi';
 import TicketsNumbersInput from '../NumberInput/TicketsNumbersInput';
+import { useModel } from 'umi'
 
-const Numbers: React.FC<{ count?: number, editable: boolean, ary?: any }> = ({
-    count = 2,
+const Numbers: React.FC<{ count?: number, editable: boolean, ary?: [number] }> = ({
+    count,
     editable,
-    ary = [
-        1, 3, 4, 5,
-        1, 3, 4, 5
-    ],
-    ...props
+    ary,
 }) => {
 
-    // const { lottoSize } = //useModel("lottery", (ret => ({ lottoSize: ret.lottoSize })))
-    // count = 6
-    const lottoSize = 4
-    const maxRange = 20
+    const { refreshNumbers } = useModel("uimodel")
     const [numbersArys, setNumersArys] = useState([])
+
+    const pageSize = 4
+    const [currentPage, setCurrentPage] = useState(1)
+    let { maxRange, lottoSize } = useModel("lottery")
+    maxRange = maxRange || 10
+    lottoSize = lottoSize || 6
 
     useEffect(
         () => {
-            if ((lottoSize * count) === ary.length) {
+            if ((lottoSize * count) === ary?.length) {
                 const tempArys = []
                 // eslint-disable-next-line no-plusplus
                 for (let index = 0; index < count; index++) {
@@ -29,23 +28,25 @@ const Numbers: React.FC<{ count?: number, editable: boolean, ary?: any }> = ({
                 }
                 setNumersArys(tempArys)
             }
-        }, [])
+        }, [refreshNumbers, count, ary])
 
     return (
-        (lottoSize * count) !== ary.length
+        (lottoSize * count) !== ary?.length
             ? <span>数据错误</span>
             :
             <List
                 dataSource={numbersArys}
                 pagination={{
-                    pageSize: 4,
-                    simple: true
+                    pageSize, simple: true,
+                    current: currentPage,
+                    onChange: (p) => {
+                        setCurrentPage(p)
+                    }
                 }}
-                // size="large"
-                // split
                 renderItem={
                     (item, i) => (
                         <Space
+                            key={i}
                             align="center"
                             // wrap
                             split="-"
@@ -57,9 +58,17 @@ const Numbers: React.FC<{ count?: number, editable: boolean, ary?: any }> = ({
                                 marginTop: "10px"
                             }}>
                             {
-                                item.map((n) => {
+                                item.map((n, j) => {
                                     return (
-                                        <TicketsNumbersInput maxRange={maxRange} value={n} editable={editable} />
+                                        <TicketsNumbersInput
+                                            index={
+                                                j + i * lottoSize + ((currentPage - 1) * pageSize * lottoSize)
+                                            }
+                                            key={j + i}
+                                            maxRange={maxRange}
+                                            value={n}
+                                            editable={editable}
+                                        />
                                     )
                                 })
                             }

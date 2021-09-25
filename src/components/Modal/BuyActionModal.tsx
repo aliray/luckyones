@@ -11,6 +11,7 @@ import { NoticeError, NoticeSuccess } from '../Notice'
 import SalesInfo from '../SalesInfo'
 import TicketsCount from '../TicketsCount'
 import styles from './index.less'
+import { sleep } from '@/utils/tools'
 
 const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...props }) => {
     const intl = useIntl()
@@ -25,7 +26,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
     } = useModel("lottery")
 
     const {
-        tickets, cost,
+        tickets, cost, gnumbers, loadingNumbers,
         setTickets, setCost,
         setApproved, setApproving, setPayloading
     } = useModel("uimodel")
@@ -120,8 +121,8 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
 
     const inputOnChange = async (e) => {
         const value = Number(e || 0)
-        setTickets(value)
         setCost(Number(currentLottery.ticketPrice) * value)
+        setTickets(value)
     }
 
     useEffect(() => {
@@ -161,7 +162,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                 </div>
             </div>
             <div className={styles.modal_row}>
-                <TicketsCount count={tickets} editable={true} />
+                <TicketsCount count={tickets} editable={true} numbers={gnumbers} loading={loadingNumbers} />
                 <EnableButton buyfn={payTickets} approvefn={approveContract} />
             </div>
             <SalesInfo maxTickets symbol ticketPrice={currentLottery.ticketPrice} />
