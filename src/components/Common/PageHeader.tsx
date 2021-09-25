@@ -35,22 +35,46 @@ const LogoIcon: React.FC = () => {
     )
 }
 
+const ToolsBuuton: React.FC<{ address: string, eth: number }> = ({ address, eth }) => {
+    const { status } = useModel("web3Model")
+    return (
+        <div className={styles.tools_button} >
+            <Space >
+                <a
+                    className={styles.button_item}
+                >
+                    {eth} ETH
+                </a>
+                <a
+                    className={styles.button_item}
+                    style={{
+                        backgroundColor: "#722ED1",
+                        fontWeight: "bolder",
+                    }}
+                >
+                    {address}
+                </a>
+                <a
+                    className={styles.button_item}
+                >
+                    <Jazzicon diameter={25} seed={jsNumberForAddress(status.address)} />
+                </a>
+            </Space>
+        </div >
+    );
+
+}
+
 const NavTools: React.FC = () => {
     const intl = useIntl()
     const { status, openWeb3Modal } = useModel("web3Model")
+    const { balanceOfEth } = useModel("users")
     return (
         <div className={styles.nav_tools}>
             <Space align="center">
                 {
                     (status?.provider?.isConnected() && status.address) ?
-                        (
-                            <div className={styles.jzicon}>
-                                <Jazzicon diameter={30} seed={jsNumberForAddress(status.address)} />
-                                <span >
-                                    {ellipseAddress(status.address, 6)}
-                                </span>
-                            </div>
-                        )
+                        <ToolsBuuton address={ellipseAddress(status.address, 4)} eth={balanceOfEth} />
                         :
                         <Button type="primary" size="large" shape="round" onClick={openWeb3Modal}>
                             {intl.formatMessage({ id: 'pages.wallet.connectTips' })}

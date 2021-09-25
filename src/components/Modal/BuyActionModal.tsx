@@ -161,7 +161,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                 </div>
             </div>
             <div className={styles.modal_row}>
-                <TicketsCount count={tickets} />
+                <TicketsCount count={tickets} editable={true} />
                 <EnableButton buyfn={payTickets} approvefn={approveContract} />
             </div>
             <SalesInfo maxTickets symbol ticketPrice={currentLottery.ticketPrice} />

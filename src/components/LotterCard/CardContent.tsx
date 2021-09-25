@@ -97,16 +97,7 @@ const LotteryCardContent: React.FC = (props) => {
                             >
                                 <Space size="large" align="center">
                                     <span className={styles.title}>您的彩票</span>
-                                    <span>
-                                        您有
-                                        <a style={{
-                                            // color: "gold",
-                                            fontSize: "large"
-                                        }}>
-                                            &nbsp;{getUserTicketsCount(curRenderLottery?.id) || 0}&nbsp;
-                                        </a>
-                                        张彩票
-                                    </span>
+                                    <TicketsCount count={getUserTicketsCount(curRenderLottery?.id) || 0} />
                                     {
                                         !(status?.provider?.isConnected() && status.address) ?
                                             <Button type="primary" size="large" shape="round" onClick={openWeb3Modal}>

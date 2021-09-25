@@ -22,8 +22,7 @@ const RadioMenu: React.FC<{ values: any}> = ({ values, ...props }) => {
                                     {
                                         backgroundColor: "#722ED1",
                                         fontWeight: "bolder",
-                                    } :
-                                    {}
+                                    } :{}
                             }
                             onClick={
                                 () => {

@@ -29,8 +29,8 @@ export default function web3Model() {
     const disconnect = async () => {
         if (
             status.web3 &&
-            status.web3.currentProvider &&
-            status.web3.currentProvider.close
+            status.web3?.currentProvider &&
+            status.web3?.currentProvider.close
         ) {
             await status.web3.currentProvider.close();
         }

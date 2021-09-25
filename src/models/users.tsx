@@ -4,18 +4,25 @@ import { useEffect, useState } from 'react'
 import { getGraphUserLotteries } from '@/services/api'
 import _ from 'lodash'
 import { useModel } from 'umi'
-
+import { gweiToDecimalNumber } from '@/utils/tools'
 
 export default function lottery() {
-    const { address } = useModel("web3Model", (ret) => ({
+    const { address, web3 } = useModel("web3Model", (ret) => ({
         address: ret.status?.address,
+        web3: ret.status?.web3
     }))
     const [userLotteries, setUserLotteries] = useState({})
+    const [balanceOfEth, setBalance] = useState(0)
 
 
     const queryUserLotteries = async () => {
         const tempuserLotteries = await getGraphUserLotteries(address) || {}
         setUserLotteries(tempuserLotteries)
+    }
+
+    const queryUserBalance = async () => {
+        const balance = await web3.eth.getBalance(address)
+        setBalance(Number(gweiToDecimalNumber(balance)))
     }
 
     const getUserTicketsCount = (lotteryId) => {
@@ -28,18 +35,13 @@ export default function lottery() {
 
     // fetch users lotterys 
     useEffect(() => {
-        queryUserLotteries()
-        // const interval = setInterval(async () => {
-        //     if (address) {
-        //         queryUserLotteries()
-        //     }
-        // }, 10000)
-        // return () => clearInterval(interval)
+        if (address) {
+            queryUserLotteries()
+            queryUserBalance()
+        }
     }, [address])
 
-
-
     return {
-        userLotteries, getUserTicketsCount
+        userLotteries, balanceOfEth, getUserTicketsCount
     }
 }
