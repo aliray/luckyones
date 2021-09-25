@@ -1,18 +1,14 @@
-import { Divider, Space, List, Input, InputNumber } from 'antd'
-import React, { useState, useEffect } from 'react'
-import { useModel } from 'umi'
+import { Divider, InputNumber, List, Space } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { HiOutlineTicket } from 'react-icons/hi';
+import TicketsNumbersInput from '../NumberInput/TicketsNumbersInput';
 
-const Numbers: React.FC<{ count: number, editable: boolean, ary?: any }> = ({
-    count,
+const Numbers: React.FC<{ count?: number, editable: boolean, ary?: any }> = ({
+    count = 2,
     editable,
     ary = [
         1, 3, 4, 5,
-        5, 6, 78, 20,
-        3, 2, 4, 22,
-        123, 44, 23, 3,
-        12, 83, 40, 4,
-        12, 83, 40, 4
+        1, 3, 4, 5
     ],
     ...props
 }) => {
@@ -20,7 +16,7 @@ const Numbers: React.FC<{ count: number, editable: boolean, ary?: any }> = ({
     // const { lottoSize } = //useModel("lottery", (ret => ({ lottoSize: ret.lottoSize })))
     // count = 6
     const lottoSize = 4
-    const maxRange = 100
+    const maxRange = 20
     const [numbersArys, setNumersArys] = useState([])
 
     useEffect(
@@ -33,9 +29,7 @@ const Numbers: React.FC<{ count: number, editable: boolean, ary?: any }> = ({
                 }
                 setNumersArys(tempArys)
             }
-            console.log(">>>>>>>>>>>>>>>> edit able", editable)
-        }, []
-    )
+        }, [])
 
     return (
         (lottoSize * count) !== ary.length
@@ -44,9 +38,6 @@ const Numbers: React.FC<{ count: number, editable: boolean, ary?: any }> = ({
             <List
                 dataSource={numbersArys}
                 pagination={{
-                    onChange: page => {
-                        console.log(page);
-                    },
                     pageSize: 4,
                     simple: true
                 }}
@@ -56,37 +47,22 @@ const Numbers: React.FC<{ count: number, editable: boolean, ary?: any }> = ({
                     (item, i) => (
                         <Space
                             align="center"
-                            wrap
+                            // wrap
+                            split="-"
                             style={{
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                padding: "8px"
+                                padding: "8px",
+                                marginTop: "10px"
                             }}>
                             {
                                 item.map((n) => {
                                     return (
-                                        <InputNumber
-                                            min={0}
-                                            precision={0}
-                                            max={maxRange}
-                                            style={{ color: "#280D5F", textAlign: 'center' }}
-                                            // onChange={inputOnChange}
-                                            value={n}
-                                            disabled={!editable}
-                                            // size="large"
-                                            // addonAfter={<HiOutlineTicket />}
-                                        // maxLength={7}
-                                        />
-
-                                        // <Input
-                                        //     style={{ width: 40, height: 40, textAlign: 'center' }}
-                                        //     disabled={!editable}
-                                        //     value={n} />
+                                        <TicketsNumbersInput maxRange={maxRange} value={n} editable={editable} />
                                     )
                                 })
                             }
-                            <br />
                         </Space>
                     )
                 }
