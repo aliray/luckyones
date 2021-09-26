@@ -3,7 +3,7 @@ import styles from './tools.less';
 import React, { useState, useEffect } from 'react';
 import { useSpring, animated, config } from 'react-spring'
 
-const RewardsTips: React.FC<{ size?: string, value?: number }> = ({ size, value }) => {
+const RewardsTips: React.FC<{ size?: string, value?: number, unit?: string }> = ({ size, value, unit }) => {
 
     const [fromTips, setFromTips] = useState(0);
     const [toTips, setToTips] = useState(0);
@@ -20,10 +20,10 @@ const RewardsTips: React.FC<{ size?: string, value?: number }> = ({ size, value 
 
     return (
         <>
-            <animated.span className={styles.rewards} style={{ fontSize: size }}>
+            <animated.span className={styles.rewards} style={{ fontSize: Number(size) }} >
                 {tips.to(n => n.toFixed(0))}
             </animated.span>
-            <span style={{ fontSize: "large" }}>&nbsp;$</span>
+            {unit && <span style={{ fontSize: Number(size) / 3 }}>&nbsp;$</span>}
         </>
     );
 };

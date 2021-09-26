@@ -7,22 +7,31 @@ import LotteryCardFooter from './CardFooter';
 import LotteryCardHeader from './CardHeader';
 import styles from './index.less';
 
-const LotteryCard: React.FC = (props) => {
+const LotteryCard: React.FC<{
+    // header
+    title?: any,
+    tips?: any,
+    extral?: React.ReactNode,
+    // footer
+    footer?: React.ReactNode,
+    // content
+    content?: React.ReactNode,
+    loadingLottery?: boolean,
+    empty?: React.ReactNode
+}> = ({ title, tips, extral, footer, content, loadingLottery, empty, ...props }) => {
 
-    const { curRenderLottery } = useModel("lottery", (ret) => ({
-        curRenderLottery: ret.curRenderLottery,
-    }));
+
 
     return (
         <div className={styles.lottery_container}>
             {
-                curRenderLottery ?
-                    <>
-                        <LotteryCardHeader />
-                        <LotteryCardContent />
-                        <LotteryCardFooter />
-                    </> :
-                    <Empty style={{ margin: "auto" }} description="暂无彩票数据,请等待开奖!" />
+                empty
+                ||
+                <>
+                    <LotteryCardHeader loadingLottery={loadingLottery} title={title} tips={tips} extral={extral} />
+                    {content}
+                    <LotteryCardFooter footer={footer} />
+                </>
             }
         </div >
     );

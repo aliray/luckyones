@@ -17,7 +17,8 @@ const TicketsCount: React.FC<{
             <Spin spinning={loading}>
                 {
                     <a className={styles.ticket_a}>
-                        <span>{count}张</span><HiOutlineTicket className={styles.tickets_font} />
+                        <span>{count}张</span>
+                        {/* <HiOutlineTicket className={styles.tickets_font} /> */}
                     </a>
                 }
             </Spin>

@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { useModel } from 'umi'
 import { gweiToDecimalNumber } from '@/utils/tools'
 
-export default function lottery() {
+export default function users() {
     const { address, web3 } = useModel("web3Model", (ret) => ({
         address: ret.status?.address,
         web3: ret.status?.web3

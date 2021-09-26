@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Footer, Header } from '@/components/Common';
-import NavNotice from '@/components/Common/NavNotice';
 import RadioMenu from '@/components/RadioButton';
 import React from 'react';
 import { useModel } from 'umi';
 import styles from './index.less';
 import moment from 'moment';
+import NavNotice from '@/components/Common/NavNotice';
 
 const Lottery: React.FC = (props) => {
     const menus = [
