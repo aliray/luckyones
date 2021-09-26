@@ -99,7 +99,6 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                     paysucccess,
                     payerror
                 )
-
                 if (tx) {
                     const receipt = await intervalTimeout(
                         async () => {
