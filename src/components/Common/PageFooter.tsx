@@ -17,7 +17,7 @@ export default () => {
         {
           key: 'Luckyones',
           title: <><span>&#127942;Luckyones</span></>,
-          href: 'https://fuck.ccp',
+          href: 'https://pemelo.finace',
           blankTarget: true,
         },
       ]}
