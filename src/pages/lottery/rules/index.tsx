@@ -1,17 +1,63 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import ProCard from '@ant-design/pro-card'
-import { Col, Divider, Row, Space } from 'antd'
+import { Col, Divider, Row, Space, Avatar } from 'antd'
 import React from 'react'
 import styles from './index.less'
 
 const Rules: React.FC = (props) => {
 
-    const extralTips: React.FC<{ txt: string }> = ({ txt, ...props }) => {
+    const extralTips: React.FC<{ txt: string }> = ({ txt }) => {
         return (
             <span className={styles.title}>
                 {txt}
             </span>
+        )
+    }
+    const colorlist = ["pink", "gold", "magenta", "orange", "cyan", "#531dab"]
+    const prizedis = [2, 3, 5, 10, 20, 60]
+    const prizenumbers = [1, 3, 9, 2, 5, 5]
+    const anumbers = {
+        0: {
+            borderTopLeftRadius: "20px",
+            borderBottomLeftRadius: "20px",
+            borderLeft: "0.6px solid #531dab"
+        },
+        2: {
+            borderTopRightRadius: "20px",
+            borderBottomRightRadius: "20px",
+            borderRight: "0.6px solid #531dab"
+        }
+    }
+    const bnumbers = {
+        1: {
+            borderTopLeftRadius: "20px",
+            borderBottomLeftRadius: "20px",
+            borderLeft: "0.6px solid #531dab"
+        },
+        5: {
+            borderTopRightRadius: "20px",
+            borderBottomRightRadius: "20px",
+            borderRight: "0.6px solid #531dab"
+        }
+    }
+
+    const PrizeList: React.FC<{ prizesdistribute: number[] }> = ({ prizesdistribute }) => {
+        return (
+            <>
+                {
+                    prizesdistribute.map((dis, i) => {
+                        return (
+                            <div key={i} style={{ width: "100%", display: "flex", marginTop: "5px", color: "#531dab" }}>
+                                <Space direction="horizontal">
+                                    <Avatar size="small" style={{ backgroundColor: colorlist[i] }} />
+                                    {`命中前${i + 1}位`}
+                                </Space>
+                                <span style={{ marginLeft: "auto", fontWeight: "bold" }}>  {dis}% 奖励</span>
+                            </div>)
+                    })
+                }
+            </>
         )
     }
 
@@ -30,7 +76,7 @@ const Rules: React.FC = (props) => {
                 gutter={24}
                 style={{ width: "100%" }}
             >
-                <Col xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
+                <Col xs={{ span: 16 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
                     <ProCard
                         title={extralTips({ txt: "购买彩票" })}
                         extra={
@@ -45,7 +91,7 @@ const Rules: React.FC = (props) => {
                         </p>
                     </ProCard>
                 </Col>
-                <Col xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
+                <Col xs={{ span: 16 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
                     <ProCard
                         title={extralTips({ txt: "等待开奖" })}
                         extra={
@@ -60,7 +106,7 @@ const Rules: React.FC = (props) => {
                         </p>
                     </ProCard>
                 </Col>
-                <Col xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
+                <Col xs={{ span: 16 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
                     <ProCard
                         title={extralTips({ txt: "检查奖金" })}
                         extra={<span className={styles.extral_tips}>
@@ -73,7 +119,7 @@ const Rules: React.FC = (props) => {
                         </p>
                     </ProCard>
                 </Col>
-                <Col xs={{ span: 14 }} lg={{ span: 21 }} xl={{ span: 18 }} xxl={{ span: 15 }}>
+                <Col xs={{ span: 16 }} lg={{ span: 21 }} xl={{ span: 18 }} xxl={{ span: 15 }}>
                     <Divider />
                 </Col>
             </Row>
@@ -88,7 +134,7 @@ const Rules: React.FC = (props) => {
                     xs={{ span: 14 }} lg={{ span: 14 }} xl={{ span: 12 }} xxl={{ span: 10 }}>
                     <ProCard style={{ marginTop: "20px", borderRadius: "20px" }}>
                         <p className={styles.title}>
-                            中将条件 彩票上的数字必须以正确的顺序命中才能中奖。
+                            中奖条件 彩票上的数字必须以正确的顺序命中才能中奖。
                         </p>
                         <p className={styles.content}>
                             有 A 和 B 两张彩票 <br />
@@ -100,9 +146,85 @@ const Rules: React.FC = (props) => {
                 </Col>
                 <Col xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
                     <ProCard
-                        style={{ ...cardStyle, marginTop: "20px", borderRadius: "20px", minHeight: "250px" }}
+                        style={{ ...cardStyle, marginTop: "20px", borderRadius: "20px", minHeight: "200px" }}
                         hoverable>
-                        sss
+                        <Row align="middle" justify="center">
+                            <Col offset={2} span={20}>
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    {
+                                        prizenumbers.map((n, i) => {
+                                            return (
+                                                <span className={styles.list_tips}>
+                                                    <Avatar size="small" style={{ backgroundColor: colorlist[i] }} >{n}</Avatar>
+                                                </span>
+
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row align="middle" justify="center">
+                            <Col span={2}>
+                                <span className={styles.list_tips}>A</span>
+                            </Col>
+                            <Col span={20}>
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    {
+                                        [1, 3, 9, 0, 1, 1].map((n, i) => {
+                                            return (
+                                                <span className={styles.list_tips}
+                                                    style={
+                                                        n === prizenumbers[i] ?
+                                                            {
+                                                                borderTop: `0.6px solid #531dab`,
+                                                                borderBottom: `0.6px solid #531dab`,
+                                                                ...anumbers[i],
+                                                                color: colorlist[i]
+                                                            }
+                                                            :
+                                                            {
+                                                                color: "lightgray"
+                                                            }
+                                                    }
+                                                >{n}</span>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row align="middle" justify="center" style={{ marginTop: "10px" }}>
+                            <Col span={2}>
+                                <span className={styles.list_tips}>B</span>
+                            </Col>
+                            <Col span={20}>
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    {
+                                        [7, 3, 9, 2, 5, 5].map((n, i) => {
+                                            return (
+                                                <span
+                                                    className={styles.list_tips}
+                                                    style={
+                                                        n === prizenumbers[i] ?
+                                                            {
+                                                                borderTop: `0.6px solid #531dab`,
+                                                                borderBottom: `0.6px solid #531dab`,
+                                                                ...bnumbers[i],
+                                                                color: "lightgray"
+                                                            } :
+                                                            {
+                                                                color: "lightgray"
+                                                            }
+                                                    }
+                                                >{n}</span>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
                     </ProCard>
                 </Col>
                 <Col xs={{ span: 14 }} lg={{ span: 21 }} xl={{ span: 18 }} xxl={{ span: 15 }}>
@@ -116,9 +238,16 @@ const Rules: React.FC = (props) => {
                 gutter={24}
                 style={{ width: "100%" }}
             >
+                <Col xs={{ span: 16 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
+                    <ProCard
+                        style={{ ...cardStyle, marginTop: "20px", borderRadius: "20px", minHeight: "250px" }}
+                        hoverable>
+                        <PrizeList prizesdistribute={prizedis} />
+                    </ProCard>
+                </Col>
                 <Col className="none_bgcard"
-                    xs={{ span: 14 }} lg={{ span: 14 }} xl={{ span: 12 }} xxl={{ span: 10 }}>
-                    <ProCard style={{ marginTop: "20px", borderRadius: "20px" }}>
+                    xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 12 }} xxl={{ span: 10 }}>
+                    <ProCard style={{ marginTop: "20px", borderRadius: "20px", textAlign: "right" }}>
                         <p className={styles.title}>
                             奖金资金
                         </p>
@@ -127,14 +256,7 @@ const Rules: React.FC = (props) => {
                         </p>
                     </ProCard>
                 </Col>
-                <Col xs={{ span: 14 }} lg={{ span: 7 }} xl={{ span: 6 }} xxl={{ span: 5 }}>
-                    <ProCard
-                        style={{ ...cardStyle, marginTop: "20px", borderRadius: "20px", minHeight: "250px" }}
-                        hoverable>
-                        内容
-                    </ProCard>
-                </Col>
-                <Col xs={{ span: 14 }} lg={{ span: 21 }} xl={{ span: 18 }} xxl={{ span: 15 }}>
+                <Col xs={{ span: 16 }} lg={{ span: 21 }} xl={{ span: 18 }} xxl={{ span: 15 }}>
                     <Divider />
                 </Col>
             </Row>

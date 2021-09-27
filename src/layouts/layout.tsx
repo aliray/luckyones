@@ -20,7 +20,7 @@ const Lottery: React.FC = (props) => {
             "background": "radial-gradient(circle, rgba(169,201,255,1) 0%, rgba(255,187,236,1) 100%)"
         },
         "/lottery/user/trades": {
-            "background": "radial-gradient(circle, rgba(255,187,236,45%) 50%, rgba(169,201,255,1) 100%)"
+            "background": "radial-gradient(circle, rgba(169,201,255,1) 0%, rgba(255,187,236,1) 100%)"
         },
         "/lottery/rules": {
             // "background": "rgb(169,201,255)",
