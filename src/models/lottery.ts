@@ -80,9 +80,10 @@ export default function lottery() {
 
 
     // lottery contract info
-    const { address, web3 } = useModel("web3Model", (ret) => ({
+    const { address, web3, chainId } = useModel("web3Model", (ret) => ({
         address: ret.status?.address,
         web3: ret.status?.web3,
+        chainId: ret.status?.chainId
     }))
 
     // const [contractInfo, setContractInfo] = useState({})
@@ -118,7 +119,7 @@ export default function lottery() {
 
     useEffect(() => {
         queryContractInfo()
-    }, [address])
+    }, [address, chainId])
 
     return {
         loadingLottery,

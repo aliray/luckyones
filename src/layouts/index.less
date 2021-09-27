@@ -1,12 +1,13 @@
 @import '~antd/es/style/themes/default.less';
 
 .container {
-  display       : flex;
-  flex-direction: column;
-  height        : 100vh;
-  overflow      : auto;
-  background    : rgb(160, 165, 212);
-  background    : radial-gradient(circle, rgba(160, 165, 212, 1) 26%, rgba(192, 160, 212, 1) 100%);
+  display            : flex;
+  flex-direction     : column;
+  height             : 100%;
+  overflow           : auto;
+  // background-image: radial-gradient(circle, rgba(160, 165, 212, 1) 26%, rgba(192, 160, 212, 1) 100%);
+  transition         : background .5s linear;
+
 }
 
 .content {

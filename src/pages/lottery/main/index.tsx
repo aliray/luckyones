@@ -42,7 +42,7 @@ const Lottery: React.FC = () => {
           <Button type="link" disabled={currentLotteryId === curRenderLottery?.id} icon={<RollbackOutlined />} onClick={backToCurLottery} />
         </Space>
       }
-      
+
       footer={
         <>
           <Typography.Text type="secondary" strong={false} style={{ fontSize: "13px", fontWeight: "lighter", textAlign: "left" }}>
