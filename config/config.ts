@@ -69,4 +69,6 @@ export default defineConfig({
   mfsu: {},
   webpack5: {},
   exportStatic: {},
+  // rootContainer:false, // 权限插件
+  // access:false,
 });

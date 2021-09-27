@@ -23,7 +23,6 @@
 * 部署 multicall contract 可以减少gas费用及查询时间
 * https://www.scien.cx/2021/09/17/how-to-deploy-a-smart-contract-to-rinkeby-testnet-using-infura-and-hardhat/ 
 
-
 ### errors
 
 * vscode 使用 terminal 后在控制台安装 新的js依赖 会有异常:
@@ -33,3 +32,15 @@
 * promise 异步编程如果嵌套调用await 需要使用try catch 捕获异常,以免为处理异常溢出;
 * 使用 npx hardhat node 作为evm开发节点时,需要设置开采模式为定时开采(手动开采模式未测试),立即开采模式下调用发起合约交易出现BUG? don't know why?
 * metamask nonce error in develop env
+
+### antd pro 样式问题
+
+* 全局更改 :global(.xxx{})
+* 局部更难改:
+    :global{
+        .style{ // 在style类名下生效
+          .xxx{
+            //更改的样式
+          }
+        }
+      }

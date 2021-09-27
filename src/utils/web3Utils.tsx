@@ -68,8 +68,8 @@ export function callApprove(
     chainId: string,
     web3: any,
     // nonce: number,
-    callback: Function,
-    errorcallback: Function
+    callback?: Function,
+    errorcallback?: Function
 ) {
     return new Promise(
         async (resolve, reject) => {
@@ -91,7 +91,7 @@ export function callApprove(
                 )
                 .on('error', (error, receipt) => {
                     console.error(error, receipt)
-                    // errorcallback()
+                    errorcallback()
                 })
         }
     )
@@ -117,7 +117,7 @@ export function buyLottTickets(
                     (err: any, data: any) => {
                         if (err) {
                             reject(err)
-                        }else{
+                        } else {
                             resolve(data)
                         }
                     }

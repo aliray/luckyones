@@ -1,4 +1,4 @@
-import RewardsTips from '@/components/Tools/rewardsTips';
+import RewardsTips from '@/components/Tools/RewardsTips';
 import { Statistic } from 'antd';
 import React from 'react';
 import { useModel } from 'umi';

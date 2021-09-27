@@ -1,31 +1,28 @@
-import { Badge, Tooltip, Popconfirm } from 'antd';
+import { Popover, Spin } from 'antd';
 import React from 'react';
 import { HiOutlineTicket } from 'react-icons/hi';
-import { useModel } from 'umi';
+import Numbers from '../Numbers';
 import styles from './index.less';
 
-const TicketsCount: React.FC<{ count: number }> = ({ count, ...props }) => {
-
-    const { openUinm } = useModel("uimodel")
-
-
+const TicketsCount: React.FC<{
+    count: number, editable?: boolean,
+    numbers: [number], loading?: boolean
+}> = ({ count, numbers, editable = false, loading = false }) => {
     return (
-        <Popconfirm
-            title={
-                <div style={{ minHeight: "100px", minWidth: "300px" }}>
-                    彩票数字展示待开发.
-                </div>
-            }
-            icon={null}
-            cancelText=""
-            okText="重新生成"
+        <Popover
+            trigger="click"
+            style={{ borderRadius: "20px" }}
+            content={<Numbers editable={editable} ary={numbers} count={count} />}
         >
-            <Badge count={count} showZero color="cyan">
-                <a>
-                    <HiOutlineTicket size="25px" color="#280D5F" onClick={() => { openUinm() }} />
-                </a>
-            </Badge>
-        </Popconfirm>
+            <Spin spinning={loading}>
+                {
+                    <a className={styles.ticket_a}>
+                        <span>{count}张</span>
+                        {/* <HiOutlineTicket className={styles.tickets_font} /> */}
+                    </a>
+                }
+            </Spin>
+        </Popover>
     )
 }
 

@@ -10,11 +10,6 @@
         name: 'main',
       },
       {
-        path: '/lottery/rounds',
-        component: './lottery/rounds',
-        name: 'rounds',
-      },
-      {
         path: '/lottery/rules',
         component: './lottery/rules',
         name: 'rules',

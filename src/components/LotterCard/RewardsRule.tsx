@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Col, Row, Skeleton } from 'antd';
 import React from 'react';
+import { useModel } from 'umi';
 import RewardsStatistic from './RewardsStatistic';
-import { Link, SelectLang, useIntl, useModel } from 'umi';
 
 const RewardsRules: React.FC = (props) => {
 

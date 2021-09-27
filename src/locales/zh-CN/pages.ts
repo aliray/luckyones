@@ -70,5 +70,5 @@ export default {
   'pages.wallet.buyButtonTips': '购买彩票',
   'pages.lottery.winnerTips': '运气爆棚,赢取百万奖金!',
   'pages.lottery.ruleTips': '以相同的顺序命中中奖号码以赢取奖金份额。 当前可赢取奖金：',
-
+  'pages.lottery.TradesHis':'用户彩票数据统计'
 };

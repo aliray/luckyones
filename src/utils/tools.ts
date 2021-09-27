@@ -98,8 +98,8 @@ export function generateLottoNumbers({
     numberOfTickets,
     lottoSize,
     maxRange
-}) {
-    const numberOfNumbers = []
+}): [number] {
+    const numberOfNumbers: [number] = [null]
     let counterForNumbers = 0
     for (let i = 0; i < numberOfTickets; i++) {
         for (let j = 0; j < lottoSize; j++) {
