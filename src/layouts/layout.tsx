@@ -6,7 +6,7 @@ import React from 'react';
 import { useLocation, useModel } from 'umi';
 import styles from './index.less';
 import moment from 'moment';
-import NavNotice from '@/components/Common/NavNotice';
+import NavNotice from '@/components/Common/navNotice';
 
 const Lottery: React.FC = (props) => {
     const menus = [
@@ -16,25 +16,16 @@ const Lottery: React.FC = (props) => {
     ]
 
     const bgcolors = {
-        "/lottery": {
-            "background": "radial-gradient(circle, rgba(169,201,255,1) 0%, rgba(255,187,236,1) 100%)"
-        },
-        "/lottery/user/trades": {
-            "background": "radial-gradient(circle, rgba(169,201,255,1) 0%, rgba(255,187,236,1) 100%)"
-        },
-        "/lottery/rules": {
-            // "background": "rgb(169,201,255)",
-            "background": "radial-gradient(circle, rgba(169,201,255,1) 0%, rgba(255,187,236,1) 100%)"
-        }
+        "/lottery": 'container_bg_lottery',
+        "/lottery/user/trades": 'container_bg_his',
+        "/lottery/rules": 'container_bg_rules'
     }
 
     const { curRenderLottery } = useModel("lottery");
     const location = useLocation();
 
     return (
-        <div className={styles.container} style={
-            bgcolors[String(location.pathname)]
-        }>
+        <div className={`${styles.container} ${bgcolors[location.pathname]}`}>
             <Header />
             <div className={styles.content}>
                 {

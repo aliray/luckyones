@@ -9,6 +9,7 @@
 * 渐变色方案 <https://www.grabient.com/>
 * rimraf node_modules 暴力删除
 * https://cssgradient.io/ 背景样式生成工具
+* https://coolbackgrounds.io/ 背景生成
 
 ## javascript or typescript tips
 

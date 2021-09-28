@@ -5,10 +5,12 @@
   flex-direction     : column;
   height             : 100%;
   overflow           : auto;
-  // background-image: radial-gradient(circle, rgba(160, 165, 212, 1) 26%, rgba(192, 160, 212, 1) 100%);
-  transition         : background .5s linear;
-
+  transition         : background 1s linear;
+  background-repeat  : no-repeat;
+  // background-position: center 100px;
+  background-size    : 100%;
 }
+
 
 .content {
   flex          : 1;
@@ -20,11 +22,9 @@
 @media (min-width: @screen-md-min) {
   .container {
     // background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
-    background-repeat  : no-repeat;
-    background-position: center 110px;
-    background-size    : 100%;
-    background         : rgb(160, 165, 212);
-    background         : radial-gradient(circle, rgba(160, 165, 212, 1) 26%, rgba(192, 160, 212, 1) 100%);
+
+    // background         : rgb(160, 165, 212);
+    // background         : radial-gradient(circle, rgba(160, 165, 212, 1) 26%, rgba(192, 160, 212, 1) 100%);
   }
 }
 
