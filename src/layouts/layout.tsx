@@ -16,8 +16,8 @@ const Lottery: React.FC = (props) => {
     ]
 
     const bgcolors = {
-        "/lottery": 'container_bg_lottery',
-        "/lottery/user/trades": 'container_bg_his',
+        "/lottery": 'container_bg_rules',
+        "/lottery/user/trades": 'container_bg_rules',
         "/lottery/rules": 'container_bg_rules'
     }
 

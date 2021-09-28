@@ -10,6 +10,7 @@
 * rimraf node_modules 暴力删除
 * https://cssgradient.io/ 背景样式生成工具
 * https://coolbackgrounds.io/ 背景生成
+* https://news.51cto.com/art/202105/661637.htm 
 
 ## javascript or typescript tips
 
