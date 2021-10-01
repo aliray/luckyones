@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import { ethers } from "ethers"
+import moment from "moment"
 import Web3 from "web3"
 
 export function ellipseAddress(
@@ -15,6 +16,14 @@ export async function sleep(ms: number) {
             resolve('')
         }, ms)
     })
+}
+
+export function timeToLotteryStatus(timedate) {
+    return moment(Number(timedate)).isAfter(moment.now()) ? "等待开奖: " : "已结束"
+}
+
+export function timeFormat(timedate) {
+    return moment(Number(timedate)).format("yy MMMM DD h:mm a")
 }
 
 /**

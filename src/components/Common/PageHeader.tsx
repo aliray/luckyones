@@ -27,9 +27,9 @@ const LogoIcon: React.FC = () => {
                         willChange: "opacity"
                     }}
                 >
-                    &#127942;
+                    Luckyones
                 </animated.p>
-                <span className={styles.logo_title}>Luckyones</span>
+                {/* <span className={styles.logo_title}>Luckyones</span> */}
             </Link>
         </div>
     )
@@ -49,7 +49,7 @@ const ToolsBuuton: React.FC<{ address: string, eth: number }> = ({ address, eth 
                     className={styles.button_item}
                     style={{
                         backgroundColor: "#722ED1",
-                        fontWeight: "bolder",
+                        fontSize:"small"
                     }}
                 >
                     {address}

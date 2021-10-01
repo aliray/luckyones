@@ -12,14 +12,18 @@ const RewardsRules: React.FC = (props) => {
         currentRewards,
         currentRenderRewards,
         currentLotteryId,
-        curRenderLotteryId
+        curRenderLotteryId,
+        totalUsers,
+        totalTickets
     } = useModel("lottery", (ret => ({
         loadingLottery: ret.loadingLottery,
         prizeDistribution: ret.curRenderLottery?.prizeDistribution,
         currentRewards: ret.currentRewards,
         currentRenderRewards: ret.currentRenderRewards,
         currentLotteryId: ret.currentLotteryId,
-        curRenderLotteryId: ret.curRenderLottery?.id
+        curRenderLotteryId: ret.curRenderLottery?.id,
+        totalUsers: ret.curRenderLottery?.totalUsers,
+        totalTickets: ret.curRenderLottery?.totalTickets
     })));
     return (
         <div
@@ -33,11 +37,11 @@ const RewardsRules: React.FC = (props) => {
             }}
         >
             <Skeleton active loading={loadingLottery} paragraph={{ rows: 2 }} title={false}>
-                <Row gutter={[0, 16]} style={{ width: "100%" }} justify="start">
+                <Row gutter={[0, 16]} style={{ width: "100%" }}>
                     {
                         prizeDistribution?.map(
                             (v, i) =>
-                                <Col span={6} key={i}>
+                                <Col span={4} key={i}>
                                     <RewardsStatistic
                                         ruletips={`命中前${i + 1}位`}
                                         rewards={
@@ -48,6 +52,20 @@ const RewardsRules: React.FC = (props) => {
                                 </Col>
                         )
                     }
+                    <Col span={4} >
+                        <RewardsStatistic
+                            ruletips={`参与人数`}
+                            rewards={totalUsers}
+                            rp={`实时数据`}
+                        />
+                    </Col>
+                    <Col span={4} >
+                        <RewardsStatistic
+                            ruletips={`已售出`}
+                            rewards={totalTickets}
+                            rp={`张彩票`}
+                        />
+                    </Col>
                 </Row>
             </Skeleton>
         </div>

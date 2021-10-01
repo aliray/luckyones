@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Button, Empty, Skeleton, Space } from 'antd'
-import React, { useState } from 'react'
+import { timeFormat, timeToLotteryStatus } from '@/utils/tools'
+import { Empty, Skeleton, Space } from 'antd'
+import React from 'react'
 import { useIntl, useModel } from 'umi'
-import BuyActionModal from '../Modal/BuyActionModal'
 import TicketsCount from '../TicketsCount'
 import Lotteryballs from '../Tools/Lotteryballs'
-import RewardsTips from '../Tools/RewardsTips'
 import styles from './index.less'
 import RewardsStatistic from './RewardsStatistic'
 
@@ -15,25 +14,21 @@ const TradesCardContent: React.FC = () => {
         loadingLottery,
         curRenderLottery,
         currentLotteryId,
-        currentRewards
+        currentRewards,
     } = useModel("lottery", (ret) => ({
         loadingLottery: ret.loadingLottery,
         curRenderLottery: ret.curRenderLottery,
         currentRewards: ret.currentRewards,
-        currentLotteryId: ret.currentLotteryId
+        currentLotteryId: ret.currentLotteryId,
     }))
 
-    const { getUserTicketsCount } = useModel("users")
-    const finalNumber = [9, 3, 4, 5, 6, 2]
-    const noUsersdata = false
-
+    const { loadingUsersLotteries, userLotteries, rounds, curRoundId } = useModel("users")
     return (
-        <Skeleton active loading={loadingLottery} paragraph={{ rows: 2 }}>
+        <Skeleton active loading={loadingUsersLotteries} paragraph={{ rows: 2 }}>
             <div className={styles.content}>
                 {
-                    noUsersdata ? <>
+                    userLotteries && rounds.length > 0 ? <>
                         {
-                            finalNumber && finalNumber.length > 0 &&
                             <div
                                 style={{
                                     display: "flex",
@@ -46,13 +41,18 @@ const TradesCardContent: React.FC = () => {
                                     <span className={styles.title}>中将号码</span>
                                     <div>
                                         {
-                                            finalNumber.map((v, i) => {
-                                                return (
-                                                    <Lotteryballs number={v} key={i} />
-                                                )
-                                            })
+                                            rounds[curRoundId] && rounds[curRoundId].finalNumber.length > 0 ?
+                                                rounds[curRoundId].finalNumber.map((v, i) => {
+                                                    return (
+                                                        <Lotteryballs number={v} key={i} />
+                                                    )
+                                                }) :
+                                                ["等", "待", "开", "奖", "!", "!"].map((v, i) => {
+                                                    return (
+                                                        <Lotteryballs number={v} key={i} />
+                                                    )
+                                                })
                                         }
-
                                     </div>
                                 </Space>
                             </div>
@@ -60,46 +60,36 @@ const TradesCardContent: React.FC = () => {
                         <div
                             style={{
                                 display: "flex",
-                                alignItems: "center",
+                                alignItems: "end",
                                 width: "100%",
                                 fontSize: "20px"
                             }}
                         >
-                            <Space size="large">
+                            <Space size="large" >
                                 <span className={styles.title}>{null}</span>
                                 <RewardsStatistic
-                                    ruletips={`回合 # 4 奖池`}
-                                    rewards={currentLotteryId === curRenderLottery.id ? currentRewards
-                                        : Number(curRenderLottery?.totalTickets) * Number(curRenderLottery?.ticketPrice)}
-                                    rp="已开奖"
+                                    ruletips={`回合${rounds[curRoundId]?.lotteryId}总奖池`}
+                                    rewards={Number(rounds[curRoundId]?.roundTotalTickets || 0) * Number(rounds[curRoundId]?.ticketPrice || 0)}
+                                    rp={timeToLotteryStatus(rounds[curRoundId]?.endTime)}
                                 />
                                 <RewardsStatistic
-                                    ruletips={`已购入`}
-                                    rewards={210}
-                                    rp={`${21}彩票`}
-                                />
-                                <RewardsStatistic
-                                    ruletips={`已兑付`}
-                                    rewards={210}
-                                    rp={`${21}USDT`}
-                                />
-                                <RewardsStatistic
-                                    ruletips={`中奖号码`}
-                                    rewards={21}
-                                    rp={`${21}张彩票`}
-                                />
-                                <RewardsStatistic
-                                    ruletips={`命中数量`}
-                                    rewards={21}
+                                    ruletips={`参与人数`}
+                                    rewards={rounds[curRoundId]?.totalUsers || 0}
                                     rp={`个`}
                                 />
+                                <RewardsStatistic
+                                    ruletips={`获得奖金`}
+                                    rewards={0}
+                                    rp={`${21}USDT`}
+                                />
+                            </Space>
+                            <Space style={{ marginLeft: "auto" }}>
+                                <span className={styles.title}>您的彩票</span>
+                                <TicketsCount count={rounds[curRoundId].totalTickets || 0} numbers={rounds[curRoundId].ticketsNumbers} />
                             </Space>
                         </div>
                     </> :
-                        <Empty
-                            style={{ margin: "auto" }}
-                            description="暂无彩票数据"
-                        />
+                        <Empty style={{ margin: "auto" }} />
                 }
             </div>
         </Skeleton>

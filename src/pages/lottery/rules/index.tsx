@@ -65,7 +65,8 @@ const Rules: React.FC = (props) => {
         // border: "1.5px solid #A0A5D4",
         borderRadius: "20px",
         marginTop: "20px",
-        minHeight: "200px"
+        minHeight: "200px",
+        // backgroundColor: "#F0EEF4"
     }
 
     return (

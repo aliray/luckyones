@@ -16,7 +16,7 @@ export default () => {
       links={[
         {
           key: 'Luckyones',
-          title: <><span>&#127942;Luckyones</span></>,
+          title: <><span>Luckyones</span></>,
           href: 'https://pemelo.finace',
           blankTarget: true,
         },

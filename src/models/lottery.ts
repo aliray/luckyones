@@ -67,6 +67,15 @@ export default function lottery() {
         });
     }
 
+    // 
+    const getLotteryInfo = (lotteryId) => {
+        let lotteryInfo = null
+        if (lotteries && lotteries.length > 0) {
+            lotteryInfo = _.find(lotteries || [], { "id": lotteryId })?.ticketsNumbers
+        }
+        return lotteryInfo
+    }
+
     // fetch lotterys  onces
     useEffect(() => {
         setLoadingLottery(true);
@@ -134,7 +143,8 @@ export default function lottery() {
         setLoadingLottery,
         nextLottery,
         lastLottery,
-        backToCurLottery
+        backToCurLottery,
+        getLotteryInfo
     }
 
 }

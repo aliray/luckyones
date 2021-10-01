@@ -29,3 +29,18 @@ export interface STATUS {
     networkId: string,
     chainId: number
 }
+
+export interface UserLotteriesEntity {
+    id: string,
+    address: string,
+    rounds: any[],
+    totalRounds: string,
+    totalTickets: string,
+    totalUsdtCosts: string,
+}
+
+export interface LotteryPageInfo {
+
+
+
+}

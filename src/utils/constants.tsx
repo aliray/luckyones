@@ -3,7 +3,7 @@ import erc20Abi from '@/abi/erc20.json';
 import LotteryAbi from '@/abi/Lottx.json';
 
 
-export const GRAPH_API_LOTTERY = "http://192.168.0.103:8000/subgraphs/name/luckyx/luckyx_subgraph_02";
+export const GRAPH_API_LOTTERY = null; // "http://192.168.0.103:8000/subgraphs/name/luckyx/luckyx_subgraph_02";
 
 // ZERO ADDRESS USED FOR CALL CONTRACT VIEW FN
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";

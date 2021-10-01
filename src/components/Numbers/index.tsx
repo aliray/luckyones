@@ -32,17 +32,20 @@ const Numbers: React.FC<{ count?: number, editable: boolean, ary?: [number] }> =
 
     return (
         (lottoSize * count) !== ary?.length
-            ? <span>数据错误</span>
+            ? <span>{count}</span>
             :
             <List
                 dataSource={numbersArys}
-                pagination={{
-                    pageSize, simple: true,
-                    current: currentPage,
-                    onChange: (p) => {
-                        setCurrentPage(p)
-                    }
-                }}
+                pagination={
+                    numbersArys.length > pageSize ?
+                        {
+                            pageSize, simple: true,
+                            current: currentPage,
+                            onChange: (p) => {
+                                setCurrentPage(p)
+                            }
+                        } : null
+                }
                 renderItem={
                     (item, i) => (
                         <Space

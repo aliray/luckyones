@@ -1,12 +1,16 @@
 import { request, gql } from 'graphql-request'
 import { GRAPH_API_LOTTERY } from '@/utils/constants'
-import { LotteryRoundGraphEntity } from '@/utils/types';
+import { LotteryRoundGraphEntity, UserLotteriesEntity } from '@/utils/types';
+import apiData from '@/mock/apiData';
 
 export const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> => {
+
   try {
-    const response = await request(
-      GRAPH_API_LOTTERY,
-      gql`
+    let lotteries = []
+    if (GRAPH_API_LOTTERY) {
+      const response = await request(
+        GRAPH_API_LOTTERY,
+        gql`
             query getLotteries {
               lottxes(first: 100, orderDirection: desc, orderBy: block) {
                 id
@@ -22,8 +26,13 @@ export const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> =>
               }
             }
         `,
-    )
-    return response.lottxes;
+      )
+      lotteries = response.lottxes;
+    } else {
+      lotteries = apiData.lotteries
+    }
+
+    return lotteries;
   } catch (error) {
     console.error(error)
     return []
@@ -31,19 +40,13 @@ export const getGraphLotteries = async (): Promise<LotteryRoundGraphEntity[]> =>
 }
 
 
-export const getGraphUserLotteries = async (address) => {
-  let user = {
-    address,
-    totalUsdtCosts: 0,
-    totalTickets: 0,
-    rounds: [],
-  }
-
+export const getGraphUserLotteries = async (address): Promise<UserLotteriesEntity> => {
+  let user = null
   try {
-
-    const response = await request(
-      GRAPH_API_LOTTERY,
-      gql`
+    if (GRAPH_API_LOTTERY) {
+      const response = await request(
+        GRAPH_API_LOTTERY,
+        gql`
             query getUserLotteries($address: ID!) {
               user(id: $address) {
                 id
@@ -54,9 +57,11 @@ export const getGraphUserLotteries = async (address) => {
                   id
                   lottx {
                     id
+                    startTime
                     endTime
                     status
                     totalUsers
+                    ticketPrice
                     totalTickets
                   }
                   claimed
@@ -65,24 +70,34 @@ export const getGraphUserLotteries = async (address) => {
               }
             }
         `,
-      { address: address.toLowerCase() }
-    )
-    const userRes = response.user
-    if (userRes) {
+        { address: address.toLowerCase() }
+      )
+      const userRes = response.user
+      if (userRes) {
+        user = {
+          address,
+          totalUsdtCosts: userRes.totalUsdtCosts,
+          totalTickets: userRes.totalTickets,
+          totalRounds: userRes.totalRounds,
+          rounds: userRes.rounds.map((round) => {
+            return {
+              lotteryId: round?.lottx?.id,
+              startTime: round?.lottx?.startTime,
+              endTime: round?.lottx?.endTime,
+              claimed: round?.claimed,
+              totalTickets: round?.totalTickets,
+              totalUsers: round?.totalUsers,
+              status: round?.lottx?.status,
+              ticketPrice: round?.lottx?.ticketPrice,
+              roundTotalTickets: round?.lottx?.totalTickets
+            }
+          }),
+        }
+      }
+    } else {
       user = {
-        address,
-        totalUsdtCosts: userRes.totalUsdtCosts,
-        totalTickets: userRes.totalTickets,
-        rounds: userRes.rounds.map((round) => {
-          return {
-            lotteryId: round?.lottx?.id,
-            endTime: round?.lottx?.endTime,
-            claimed: round?.claimed,
-            totalTickets: round?.totalTickets,
-            totalUsers: round?.totalUsers,
-            status: round?.lottx?.status,
-          }
-        }),
+        ...user,
+        ...apiData.user
       }
     }
   } catch (error) {

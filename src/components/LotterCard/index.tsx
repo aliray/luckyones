@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Empty } from 'antd';
-import React from 'react';
-import { useIntl, useModel } from 'umi';
-import LotteryCardContent from './CardContent';
-import LotteryCardFooter from './CardFooter';
-import LotteryCardHeader from './CardHeader';
-import styles from './index.less';
+import React from 'react'
+import LotteryCardFooter from './CardFooter'
+import LotteryCardHeader from './CardHeader'
+import styles from './index.less'
 
 const LotteryCard: React.FC<{
     // header
@@ -24,16 +21,10 @@ const LotteryCard: React.FC<{
 
     return (
         <div className={styles.lottery_container}>
-            {
-                empty
-                ||
-                <>
-                    <LotteryCardHeader loadingLottery={loadingLottery} title={title} tips={tips} extral={extral} />
-                    {content}
-                    <LotteryCardFooter footer={footer} />
-                </>
-            }
+            <LotteryCardHeader loadingLottery={loadingLottery} title={title} tips={tips} extral={extral} />
+            {content}
+            <LotteryCardFooter footer={footer} />
         </div >
-    );
-};
-export default LotteryCard;
+    )
+}
+export default LotteryCard

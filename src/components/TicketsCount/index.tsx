@@ -1,6 +1,6 @@
 import { Popover, Spin } from 'antd';
 import React from 'react';
-import { HiOutlineTicket } from 'react-icons/hi';
+import { UnitipsNormal } from '../MoneyTips';
 import Numbers from '../Numbers';
 import styles from './index.less';
 
@@ -15,12 +15,9 @@ const TicketsCount: React.FC<{
             content={<Numbers editable={editable} ary={numbers} count={count} />}
         >
             <Spin spinning={loading}>
-                {
-                    <a className={styles.ticket_a}>
-                        <span>{count}张</span>
-                        {/* <HiOutlineTicket className={styles.tickets_font} /> */}
-                    </a>
-                }
+                <a className={styles.ticket_a}>
+                    {count}张彩票
+                </a>
             </Spin>
         </Popover>
     )
