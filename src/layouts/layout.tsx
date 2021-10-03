@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useModel } from 'umi';
 import styles from './index.less';
 import moment from 'moment';
-import NavNotice from '@/components/Common/navNotice';
+import NavNotice from '@/components/Common/NavNotice';
 
 const Lottery: React.FC = (props) => {
     const menus = [

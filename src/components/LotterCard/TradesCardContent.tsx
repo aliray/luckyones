@@ -13,7 +13,7 @@ const TradesCardContent: React.FC = () => {
     const { loadingUsersLotteries, userLotteries, rounds, curRoundId } = useModel("users")
     return (
         <Skeleton active loading={loadingUsersLotteries} paragraph={{ rows: 2 }}>
-            <div className={styles.content}>
+            <div className={styles.card_content}>
                 {
                     userLotteries && rounds.length > 0 ? <>
                         {

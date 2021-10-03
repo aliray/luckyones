@@ -12,8 +12,7 @@ const LogoIcon: React.FC = () => {
     const { logoX } = useSpring({ from: { logoX: 0 }, logoX: logoClick ? 1 : 0, config: { duration: 1000 }, })
     return (
         <div className={styles.logo_left}>
-            <Link to="/"
-                style={{ display: "flex", alignItems: "center" }}
+            <Link to="/" style={{ display: "flex", alignItems: "center" }}
                 onMouseEnter={() => { logoToggle(!logoClick) }}
                 onMouseLeave={() => { logoToggle(!logoClick) }}>
                 <animated.p
@@ -29,7 +28,6 @@ const LogoIcon: React.FC = () => {
                 >
                     Luckyones
                 </animated.p>
-                {/* <span className={styles.logo_title}>Luckyones</span> */}
             </Link>
         </div>
     )
@@ -38,25 +36,15 @@ const LogoIcon: React.FC = () => {
 const ToolsBuuton: React.FC<{ address: string, eth: number }> = ({ address, eth }) => {
     const { status } = useModel("web3Model")
     return (
-        <div className={styles.tools_button} >
-            <Space >
-                <a
-                    className={styles.button_item}
-                >
+        <div className={styles.tools_button}>
+            <Space>
+                <a className={styles.button_item}>
                     {eth} ETH
                 </a>
-                <a
-                    className={styles.button_item}
-                    style={{
-                        backgroundColor: "#722ED1",
-                        fontSize:"small"
-                    }}
-                >
+                <a className={styles.button_item} style={{ backgroundColor: "#722ED1", fontSize: "small" }}>
                     {address}
                 </a>
-                <a
-                    className={styles.button_item}
-                >
+                <a className={styles.button_item}>
                     <Jazzicon diameter={25} seed={jsNumberForAddress(status.address)} />
                 </a>
             </Space>

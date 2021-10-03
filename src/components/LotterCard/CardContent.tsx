@@ -33,7 +33,7 @@ const LotteryCardContent: React.FC = () => {
 
     return (
         <Skeleton active loading={loadingLottery} paragraph={{ rows: 2 }}>
-            <div className={styles.content}>
+            <div className={styles.card_content}>
                 {
                     curRenderLottery && curRenderLottery.id ?
                         <>

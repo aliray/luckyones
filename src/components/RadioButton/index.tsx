@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { Space } from 'antd';
 import React, { useState, useEffect } from 'react';
 import styles from './index.less';
@@ -9,7 +8,7 @@ const RadioMenu: React.FC<{ values: any}> = ({ values, ...props }) => {
     const [selectedIndex, setIndex] = useState(0)
     const location = useLocation();
     return (
-        <div className={styles.main} >
+        <div className={styles.radion_btn_main} >
             <Space >
                 {
                     values.map((v, index) =>

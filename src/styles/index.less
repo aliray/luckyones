@@ -1,0 +1,605 @@
+@import '~antd/es/style/themes/default.less';
+
+/**
+    common less
+*/
+
+.nav_top {
+    display       : flex;
+    flex-direction: row;
+    width         : 100%;
+    align-items   : baseline;
+    height        : 80px;
+    padding       : 24px;
+}
+
+.logo_left {
+    margin-left: 48px;
+}
+
+.logo {
+    font-size  : 21px;
+    font-weight: 500;
+    font-family: fantasy;
+}
+
+.logo_title {
+    position   : relative;
+    color      : @primary-color;
+    font-weight: bold;
+    font-size  : 18px;
+    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.nav_tools {
+    margin-left : auto;
+    margin-right: 48px;
+}
+
+.lang {
+    // width: 100%;
+    height     : 40px;
+    line-height: 44px;
+    text-align : right;
+    flex       : auto;
+}
+
+.jzicon {
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+    color          : #C71FCD;
+    font-weight    : bold;
+    font-size      : 11px;
+    cursor         : pointer;
+}
+
+.nav_content {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    text-align     : center;
+    color          : @primary-color;
+}
+
+.content {
+    flex: 1;
+}
+
+@media (min-width: @screen-md-min) {
+    .container {
+        background-repeat  : no-repeat;
+        background-position: center 110px;
+        background-size    : 100%;
+        background         : linear-gradient(rgb(203, 215, 239) 0%, rgb(154, 159, 208) 100%);
+    }
+
+    .content {}
+}
+
+.top {
+    text-align: center;
+}
+
+.title {
+    position   : relative;
+    top        : 2px;
+    color      : @heading-color;
+    font-weight: 600;
+    font-size  : 33px;
+    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.prize_font {
+    text-align : center;
+    font-size  : x-large;
+    font-weight: bold;
+    padding    : 24px;
+    color      : @primary-color;
+}
+
+@media (max-width: 1024px) {
+    .prize_font {
+        display: none;
+    }
+}
+
+// tools button
+.tools_button {
+    display            : flex;
+    text-align         : center;
+    // margin          : 24px;
+    padding            : 6px 6px;
+    background-color   : #410F88;
+    justify-content    : center;
+    color              : @primary-color;
+    font-weight        : 700;
+    border-radius      : 15px;
+    width              : fit-content;
+    // min-height      : 50px;
+    box-shadow         : 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+
+}
+
+.button_item {
+    display        : flex;
+    justify-content: center;
+    text-align     : center;
+    width          : auto;
+    border-radius  : 10px;
+    align-items    : center;
+    padding        : 2px;
+    color          : #fff;
+}
+
+
+// card
+.lottery_container {
+    position        : relative;
+    display         : flex;
+    flex-direction  : column;
+    // max-width: 1024px;
+    min-width       : 400px;
+    min-height      : 300px;
+    align-items     : center;
+    justify-content : flex-start;
+    border-radius   : 30px;
+    color           : #280D5F;
+    box-shadow      : 0px 10px 30px -5px grey;
+    transition      : box-shadow 0.5s, opacity 0.5s;
+    will-change     : transform;
+    border          : 0.5px solid #F0EEF3;
+    background-color: #fff;
+    font-size       : 15px;
+    font-weight     : bold;
+}
+
+@media (min-width: @screen-md-min) {
+    .lottery_container {
+        width: 800px;
+    }
+}
+
+.header {
+    display                : flex;
+    position               : relative;
+    background-color       : #F0EEF4;
+    width                  : 100%;
+    border-top-left-radius : 30px;
+    border-top-right-radius: 30px;
+    // max-height: 60px;
+    // height: 50px;
+    // align-items: center;
+    padding                : 30px;
+}
+
+.round_font {
+    font-size : 25px;
+    color     : #280D5F;
+    text-align: left;
+}
+
+.round_time {
+    font-size  : 13px;
+    color      : #280D5F;
+    font-weight: lighter;
+    text-align : left;
+}
+
+
+.card_content {
+    position        : relative;
+    display         : flex;
+    flex-direction  : column;
+    background-color: #FFF;
+    width           : 100%;
+    // max-height: 60px;
+    min-height      : 200px;
+    align-items     : center;
+    padding         : 30px;
+}
+
+@keyframes buyBtnRotateY {
+    0% {
+        transform: rotate(-7deg);
+    }
+
+    100% {
+        transform: rotate(7deg);
+    }
+}
+
+.buyBtnDiv {
+    animation                  : buyBtnRotateY 1.5s infinite;
+    animation-direction        : alternate;
+    -webkit-animation-direction: alternate;
+    /* Safari 和 Chrome */
+}
+
+.title {
+    display   : flex;
+    width     : 70px;
+    font-size : 15px;
+    text-align: left;
+}
+
+.footer {
+    display                      : flex;
+    flex-direction               : column;
+    width                        : 100%;
+    // text-align: center;
+    padding                      : 30px;
+    // padding-top               : 10px;
+    /* background-color          : grey; */
+    border-bottom-left-radius    : 30px;
+    border-bottom-right-radius   : 30px;
+    border-top                   : 2px solid #F0EEF4;
+    background-color             : #F0EEF4;
+}
+
+.rewards_precents {
+    display           : flex;
+    flex-direction    : column;
+    // justify-content: flex-start;
+    // align-items: center;
+    text-align        : left;
+}
+
+.rewards_ruletips {
+    font-size  : 15px;
+    color      : @primary-color;
+    font-weight: lighter;
+    text-align : left;
+
+}
+
+.rewards_rewards {
+    font-size  : large;
+    color      : #280D5F;
+    text-align : left;
+    font-weight: lighter;
+}
+
+/** 
+    modal less
+*/
+
+.user_modal {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    width          : 100%;
+}
+
+.modal_row {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    position       : relative;
+    width          : 100%;
+    color          : gray;
+    padding        : 10px;
+}
+
+.user_modal_content {
+    display         : flex;
+    flex-direction  : column;
+    padding         : 10px;
+    width           : 100%;
+    background-color: #FFF;
+}
+
+.input_modal {
+    display            : flex;
+    align-items        : center;
+    justify-content    : center;
+    flex-direction     : column;
+    width              : 100%;
+    min-height         : 60px;
+    border-radius      : 20px;
+    border             : 1px solid rgb(215, 217, 223);
+    background-color   : rgb(247, 248, 250);
+    padding-top        : 10px;
+    padding-bottom     : 10px;
+    // box-shadow      : rgb(237 75 158) 0px 0px 0px 1px, rgb(237 75 158 / 20%) 0px 0px 0px 4px;
+}
+
+/**
+    notice less
+*/
+.notice {
+    color           : @primary-color;
+    border-radius   : 20px;
+    background      : #F0EEF4;
+    // font-weight  : bold;
+}
+
+.err_notice {
+    color           : @error-color;
+    border-radius   : 20px;
+    background      : #F0EEF4;
+    // font-weight  : bold;
+}
+
+.message {
+    color         : @primary-color;
+    // font-weight: bold;
+}
+
+.err_message {
+    color         : @error-color;
+    // font-weight: bold;
+}
+
+/**
+    number input
+*/
+.input_numbers_int {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    border-radius   : 20%;
+    border          : 1px solid rgb(215, 217, 223);
+    background-color: rgb(247, 248, 250);
+}
+
+/**
+    radio button
+*/
+.radion_btn_main {
+    display         : flex;
+    text-align      : center;
+    margin          : 24px;
+    padding         : 8px;
+    background-color: #410F88;
+    justify-content : center;
+    color           : @primary-color;
+    font-weight     : 700;
+    border-radius   : 15px;
+    width           : fit-content;
+    min-height      : 50px;
+    box-shadow      : 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+
+}
+
+.button_item {
+    display        : flex;
+    justify-content: center;
+    text-align     : center;
+    width          : auto;
+    border-radius  : 10px;
+    align-items    : center;
+    padding        : 8px;
+    color          : #fff;
+}
+
+/**
+    tickets count
+*/
+.ticket_a {
+    display    : flex;
+    align-items: center;
+}
+
+.tickets_font {
+    color    : "#280D5F";
+    font-size: 25px;
+}
+
+
+/**
+  tools less
+*/
+
+.rewards {
+    text-align       : center;
+    // font-size     : xxx-large;
+    // font-weight: bold;
+    color            : #C71FCD; //@primary-color;
+    font-weight      : lighter;
+}
+
+.ball {
+    display      : inline-block;
+    width        : 100%;
+    height       : 100%;
+    margin       : 0;
+    border-radius: 50%;
+    position     : relative;
+    background   : radial-gradient(circle at 50% 40%, #fcfcfc, #efeff1 66%, #9b5050 80%);
+    overflow     : hidden;
+    animation    : ballGrow 2s ease-out forwards;
+    transform    : scale(0.5);
+}
+
+.ball:after {
+    position         : absolute;
+    top              : 5%;
+    left             : 10%;
+    width            : 100%;
+    height           : 100%;
+    border-radius    : 50%;
+    background       : radial-gradient(circle at 50% 50%, rgba(37, 26, 26, 0.8), rgba(148, 40, 40, 0.8) 14%, rgba(255, 255, 255, 0) 24%);
+    -webkit-transform: translateX(-80px) translateY(-90px) skewX(-20deg);
+    -moz-transform   : translateX(-80px) translateY(-90px) skewX(-20deg);
+    -ms-transform    : translateX(-80px) translateY(-90px) skewX(-20deg);
+    -o-transform     : translateX(-80px) translateY(-90px) skewX(-20deg);
+    transform        : translateX(-80px) translateY(-90px) skewX(-20deg);
+}
+
+.stage {
+    width                     : 50px;
+    height                    : 50px;
+    display                   : inline-block;
+    margin-left               : 10px;
+    -webkit-perspective       : 1200px;
+    -moz-perspective          : 1200px;
+    -ms-perspective           : 1200px;
+    -o-perspective            : 1200px;
+    perspective               : 1200px;
+    -webkit-perspective-origin: 50% 50%;
+    -moz-perspective-origin   : 50% 50%;
+    -ms-perspective-origin    : 50% 50%;
+    -o-perspective-origin     : 50% 50%;
+    perspective-origin        : 50% 50%;
+}
+
+.number {
+    position   : absolute;
+    width      : 100%;
+    text-align : center;
+    line-height: 50px;
+    font-size  : 20px;
+    font-weight: bold;
+    color      : #C71FCD;
+    font-family: 'Roboto', sans-serif;
+    animation  : ballRoll 2s ease-out;
+}
+
+.number:after {
+    content  : attr(data-number);
+    position : absolute;
+    transform: translateX(-75%);
+    opacity  : 0;
+    animation: numberReveal 0.1s 1.5s reverse forwards;
+}
+
+.number:before {
+    content    : '?';
+    font-weight: bold;
+    position   : absolute;
+    transform  : translateX(-25%);
+    animation  : numberReveal 0.1s 1.5s forwards;
+}
+
+@keyframes ballRoll {
+
+    0%,
+    20%,
+    50% {
+        opacity  : 1;
+        transform: translateY(0) rotateX(0) scale(1);
+    }
+
+    10%,
+    35%,
+    75% {
+        transform: translateY(100%) rotateX(170deg) scale(0.4);
+    }
+
+    11%,
+    36%,
+    76% {
+        transform: translateY(-100%) rotateX(-170deg) scale(0.3);
+        opacity  : 0;
+    }
+
+}
+
+@keyframes ballGrow {
+    0% {
+        transform: scale(0.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes numberReveal {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.stage:nth-child(2) .ball,
+.stage:nth-child(2) .number {
+    animation-delay: 0.3s;
+}
+
+.stage:nth-child(2) .number:after,
+.stage:nth-child(2) .number:before {
+    animation-delay: 1.8s;
+}
+
+.stage:nth-child(3) .ball,
+.stage:nth-child(3) .number {
+    animation-delay: 0.6s;
+}
+
+.stage:nth-child(3) .number:after,
+.stage:nth-child(3) .number:before {
+    animation-delay: 2.1s;
+}
+
+.stage:nth-child(4) .ball,
+.stage:nth-child(4) .number {
+    animation-delay: 0.9s;
+}
+
+.stage:nth-child(4) .number:after,
+.stage:nth-child(4) .number:before {
+    animation-delay: 2.4s;
+}
+
+/**
+    global
+*/
+:global {
+    .ant-popover-inner {
+        border-radius: 20px;
+    }
+
+    .ant-modal-header {
+        padding      : 16px 24px;
+        color        : @primary-color;
+        background   : #F0EEF4;
+        border-bottom: 1px solid rgb(215, 217, 223);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .ant-modal-title {
+        margin     : 0;
+        color      : @primary-color;
+        font-weight: bold;
+        font-size  : 16px;
+        line-height: 22px;
+        word-wrap  : break-word;
+    }
+
+    .ant-modal-content {
+        position        : relative;
+        background-color: #fff;
+        background-clip : padding-box;
+        border          : 0;
+        border-radius   : 20px;
+        box-shadow      : 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+        pointer-events  : auto;
+    }
+
+    .ant-input-number-handler-wrap {
+        display: none;
+    }
+
+    .local_input_number {
+        .ant-input-number-input {
+            text-align : center;
+            font-weight: bold;
+        }
+    }
+}
+
+a {
+    font-weight: 100;
+}
+
+a:hover {
+    font-weight: bold;
+    // color: #fff;
+}

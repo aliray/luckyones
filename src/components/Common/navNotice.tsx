@@ -1,7 +1,7 @@
-import RewardsTips from '@/components/Tools/RewardsTips';
 import { Statistic } from 'antd';
 import React from 'react';
 import { useModel } from 'umi';
+import RewardsTips from '../Tools/RewardsTips';
 import styles from './index.less';
 
 const NavNotice: React.FC = () => {
