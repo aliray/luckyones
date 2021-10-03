@@ -2,7 +2,7 @@
 
 import { Footer, Header } from '@/components/Common';
 import RadioMenu from '@/components/RadioButton';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useModel } from 'umi';
 import styles from './index.less';
 import moment from 'moment';
@@ -23,6 +23,8 @@ const Lottery: React.FC = (props) => {
 
     const { curRenderLottery } = useModel("lottery");
     const location = useLocation();
+
+    useEffect(() => { console.log(styles) }, [])
 
     return (
         <div className={`${styles.container} ${bgcolors[location.pathname]}`}>

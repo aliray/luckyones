@@ -5,7 +5,6 @@ import styles from './index.less'
 import { MoneyTipsStatistic } from '../MoneyTips'
 
 const RewardsStatistic: React.FC<{ ruletips: string, rewards?: number, rp?: string }> = ({ ruletips, rewards, rp }) => {
-
     return (
         <div
             style={{

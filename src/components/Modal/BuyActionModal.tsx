@@ -20,6 +20,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
         address: ret.status?.address,
         web3: ret.status?.web3,
     }))
+
     const {
         currentLottery, currentLotteryId,
         balanceOfUsdt, maxTickets, symbol, maxRange, allowance, lottoSize
@@ -30,7 +31,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
         setTickets, setCost,
         setApproved, setApproving, setPayloading
     } = useModel("uimodel")
-    // const [, setBalanceOfUsdt] = useState(0)
+
     const paysucccess = async () => {
         NoticeSuccess("操作成功.")
         setPayloading(false)
@@ -66,7 +67,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                         payerror
                     )
                     if (tx) {
-                        const receipt = await intervalTimeout(
+                        const receipt: any = await intervalTimeout(
                             async () => {
                                 return await web3.eth.getTransactionReceipt(String(tx))
                             }
@@ -100,7 +101,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                     payerror
                 )
                 if (tx) {
-                    const receipt = await intervalTimeout(
+                    const receipt: any = await intervalTimeout(
                         async () => {
                             return await web3.eth.getTransactionReceipt(String(tx))
                         }
@@ -155,9 +156,9 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                 />
                 <div className={styles.modal_row}>
                     <MoneyTipsNormal money={balanceOfUsdt} unit={`余额 ${symbol}`} />
-                    <span style={{ marginLeft: "auto" }}>
+                    <div style={{ marginLeft: "auto" }}>
                         <MoneyTipsNormal money={Number(cost) || 0} unit={`费用 ${symbol}`} />
-                    </span>
+                    </div>
                 </div>
             </div>
             <div className={styles.modal_row}>

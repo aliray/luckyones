@@ -25,6 +25,7 @@ const RewardsRules: React.FC = (props) => {
         totalUsers: ret.curRenderLottery?.totalUsers,
         totalTickets: ret.curRenderLottery?.totalTickets
     })));
+    
     return (
         <div
             style={{

@@ -49,7 +49,7 @@ const LotteryCardContent: React.FC = () => {
                                     }}
                                 >
                                     <Space>
-                                        <span className={styles.title}>中将号码</span>
+                                        <div className={styles.title}>中将号码</div>
                                         <div>
                                             {
                                                 curRenderLottery.finalNumber.map((v, i) => {
@@ -73,7 +73,7 @@ const LotteryCardContent: React.FC = () => {
                                 }}
                             >
                                 <Space size="large">
-                                    <span className={styles.title}>奖池</span>
+                                    <div className={styles.title}>奖池</div>
                                     <RewardsTips
                                         size="50"
                                         value={
@@ -85,7 +85,7 @@ const LotteryCardContent: React.FC = () => {
                                 </Space>
 
                                 <Space style={{ marginLeft: "auto" }}>
-                                    <span className={styles.title}>您的彩票</span>
+                                    <div className={styles.title}>您的彩票</div>
                                     <TicketsCount count={getUserTicketsCount(curRenderLottery?.id) || 0} numbers={getUserTicketsNumber(curRenderLottery?.id)} />
                                     {
                                         !(status?.provider?.isConnected() && status.address) ?

@@ -10,18 +10,6 @@ import RewardsStatistic from './RewardsStatistic'
 
 const TradesCardContent: React.FC = () => {
     const intl = useIntl()
-    const {
-        loadingLottery,
-        curRenderLottery,
-        currentLotteryId,
-        currentRewards,
-    } = useModel("lottery", (ret) => ({
-        loadingLottery: ret.loadingLottery,
-        curRenderLottery: ret.curRenderLottery,
-        currentRewards: ret.currentRewards,
-        currentLotteryId: ret.currentLotteryId,
-    }))
-
     const { loadingUsersLotteries, userLotteries, rounds, curRoundId } = useModel("users")
     return (
         <Skeleton active loading={loadingUsersLotteries} paragraph={{ rows: 2 }}>
@@ -38,7 +26,7 @@ const TradesCardContent: React.FC = () => {
                                 }}
                             >
                                 <Space>
-                                    <span className={styles.title}>中将号码</span>
+                                    <div className={styles.title}>中将号码</div>
                                     <div>
                                         {
                                             rounds[curRoundId] && rounds[curRoundId].finalNumber.length > 0 ?
@@ -66,7 +54,7 @@ const TradesCardContent: React.FC = () => {
                             }}
                         >
                             <Space size="large" >
-                                <span className={styles.title}>{null}</span>
+                                <div className={styles.title}>{null}</div>
                                 <RewardsStatistic
                                     ruletips={`回合${rounds[curRoundId]?.lotteryId}总奖池`}
                                     rewards={Number(rounds[curRoundId]?.roundTotalTickets || 0) * Number(rounds[curRoundId]?.ticketPrice || 0)}
@@ -84,7 +72,7 @@ const TradesCardContent: React.FC = () => {
                                 />
                             </Space>
                             <Space style={{ marginLeft: "auto" }}>
-                                <span className={styles.title}>您的彩票</span>
+                                <div className={styles.title}>您的彩票</div>
                                 <TicketsCount count={rounds[curRoundId].totalTickets || 0} numbers={rounds[curRoundId].ticketsNumbers} />
                             </Space>
                         </div>

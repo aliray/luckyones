@@ -5,10 +5,10 @@ export default (props) => {
     return (
         <section className={styles.stage}>
             <figure className={styles.ball}>
-                <span
+                <div
                     className={styles.number}
                     data-number={number}>&nbsp;
-                </span>
+                </div>
             </figure>
         </section>
     );

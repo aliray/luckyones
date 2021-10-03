@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import LotteryCard from '@/components/LotterCard';
-import LotteryCardContent from '@/components/LotterCard/CardContent';
-import RewardsRules from '@/components/LotterCard/RewardsRule';
-import { timeFormat, timeToLotteryStatus } from '@/utils/tools';
-import { RollbackOutlined, VerticalLeftOutlined, VerticalRightOutlined } from '@ant-design/icons';
-import { Button, Empty, Space, Typography } from 'antd';
-import moment from 'moment';
-import React from 'react';
-import { useIntl, useModel } from 'umi';
+import LotteryCard from '@/components/LotterCard'
+import LotteryCardContent from '@/components/LotterCard/CardContent'
+import RewardsRules from '@/components/LotterCard/RewardsRule'
+import { timeFormat, timeToLotteryStatus } from '@/utils/tools'
+import { RollbackOutlined, VerticalLeftOutlined, VerticalRightOutlined } from '@ant-design/icons'
+import { Button, Empty, Space, Typography } from 'antd'
+import React from 'react'
+import { useIntl, useModel } from 'umi'
 
 const Lottery: React.FC = () => {
-  const intl = useIntl();
+  const intl = useIntl()
   const {
     loadingLottery,
     currentLotteryId,
@@ -80,4 +79,4 @@ const Lottery: React.FC = () => {
   )
 }
 
-export default Lottery;
+export default Lottery

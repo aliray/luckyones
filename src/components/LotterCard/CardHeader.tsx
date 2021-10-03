@@ -9,13 +9,13 @@ const LotteryCardHeader: React.FC<{ title?: any, tips?: any, extral?: React.Reac
             <div className={styles.header}>
                 <Skeleton active loading={loadingLottery} paragraph={{ rows: 1 }}>
                     <div>
-                        <span className={styles.round_font}>
+                        <div className={styles.round_font}>
                             {title || "标题"}
-                        </span>
+                        </div>
                         <br />
-                        <span className={styles.round_time}>
+                        <div className={styles.round_time}>
                             {tips}
-                        </span>
+                        </div>
                     </div>
                     <div style={{ marginLeft: "auto" }}>
                         {extral}
