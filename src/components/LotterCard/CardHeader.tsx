@@ -12,7 +12,6 @@ const LotteryCardHeader: React.FC<{ title?: any, tips?: any, extral?: React.Reac
                         <div className={styles.round_font}>
                             {title || "标题"}
                         </div>
-                        <br />
                         <div className={styles.round_time}>
                             {tips}
                         </div>

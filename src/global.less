@@ -5,38 +5,81 @@ body,
 #root {
   height     : 100%;
   font-family: sans-serif;
-}
 
-.colorWeak {
-  filter: invert(80%);
-}
+  .colorWeak {
+    filter: invert(80%);
+  }
 
-.ant-layout {
-  min-height: 100vh;
-}
+  .ant-layout {
+    min-height: 100vh;
+  }
 
-.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
-  left: unset;
-}
+  .ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
+    left: unset;
+  }
 
-//ant-pro-basicLayout-content
-.ant-pro-basicLayout-content {
-  margin: 0;
-}
+  //ant-pro-basicLayout-content
+  .ant-pro-basicLayout-content {
+    margin: 0;
+  }
 
-.ant-layout-footer {
-  padding   : 24px 50px;
-  color     : rgba(0, 0, 0, 0.85);
-  font-size : 14px;
-  background: unset;
-}
+  .ant-layout-footer {
+    padding   : 24px 50px;
+    color     : rgba(0, 0, 0, 0.85);
+    font-size : 14px;
+    background: unset;
+  }
 
-.ant-dropdown-menu {
-  border-radius: 10px;
-}
+  .ant-dropdown-menu {
+    border-radius: 10px;
+  }
 
-.ant-popover-inner {
-  border-radius: 20px;
+  .ant-popover-inner {
+    border-radius: 20px;
+  }
+
+  .ant-modal-header {
+    padding      : 16px 24px;
+    color        : @primary-color;
+    background   : #F0EEF4;
+    border-bottom: 1px solid rgb(215, 217, 223);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .ant-modal-title {
+    margin     : 0;
+    color      : @primary-color;
+    font-weight: bold;
+    font-size  : 16px;
+    line-height: 22px;
+    word-wrap  : break-word;
+  }
+
+  .ant-modal-content {
+    position        : relative;
+    background-color: #fff;
+    background-clip : padding-box;
+    border          : 0;
+    border-radius   : 20px;
+    box-shadow      : 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+    pointer-events  : auto;
+  }
+
+  .ant-input-number-handler-wrap {
+    display: none;
+  }
+
+  .ant-popover-inner {
+    border-radius: 20px;
+  }
+
+  .local_input_number {
+    .ant-input-number-input {
+      text-align : center;
+      font-weight: bold;
+    }
+  }
+
 }
 
 
@@ -118,58 +161,4 @@ ol {
   background      : linear-gradient(to bottom, #F0EEF4, #e5dcf1);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-color: #F0EEF4;
-
-
-}
-
-:global {
-  .local_input_number {
-    .ant-input-number-input {
-      text-align : center;
-      font-weight: bold;
-    }
-  }
-
-  .none_bgcard {
-    .ant-pro-card {
-      background-color: transparent;
-    }
-  }
-}
-
-:global {
-  .ant-popover-inner {
-    border-radius: 20px;
-  }
-
-  .ant-modal-header {
-    padding      : 16px 24px;
-    color        : @primary-color;
-    background   : #F0EEF4;
-    border-bottom: 1px solid rgb(215, 217, 223);
-    border-radius: 20px 20px 0 0;
-  }
-
-  .ant-modal-title {
-    margin     : 0;
-    color      : @primary-color;
-    font-weight: bold;
-    font-size  : 16px;
-    line-height: 22px;
-    word-wrap  : break-word;
-  }
-
-  .ant-modal-content {
-    position        : relative;
-    background-color: #fff;
-    background-clip : padding-box;
-    border          : 0;
-    border-radius   : 20px;
-    box-shadow      : 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-    pointer-events  : auto;
-  }
-
-  .ant-input-number-handler-wrap {
-    display: none;
-  }
 }

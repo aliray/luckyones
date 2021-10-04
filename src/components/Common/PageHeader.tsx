@@ -5,6 +5,7 @@ import { Button, Space } from 'antd'
 import React, { useState } from 'react'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import { Link, SelectLang, useIntl, useModel } from 'umi'
+import ThemeButton from '../Buttons/ThemeButton'
 import styles from './index.less'
 
 const LogoIcon: React.FC = () => {
@@ -41,7 +42,7 @@ const ToolsBuuton: React.FC<{ address: string, eth: number }> = ({ address, eth 
                 <a className={styles.button_item}>
                     {eth} ETH
                 </a>
-                <a className={styles.button_item} style={{ backgroundColor: "#722ED1", fontSize: "small" }}>
+                <a className={styles.button_item} style={{ backgroundColor: "#722ED1", fontSize: "small", padding: "6px" }}>
                     {address}
                 </a>
                 <a className={styles.button_item}>
@@ -59,7 +60,7 @@ const NavTools: React.FC = () => {
     const { balanceOfEth } = useModel("users")
     return (
         <div className={styles.nav_tools}>
-            <Space align="center">
+            <Space align="center" size="large">
                 {
                     (status?.provider?.isConnected() && status.address) ?
                         <ToolsBuuton address={ellipseAddress(status.address, 4)} eth={balanceOfEth} />
@@ -68,9 +69,8 @@ const NavTools: React.FC = () => {
                             {intl.formatMessage({ id: 'pages.wallet.connectTips' })}
                         </Button>
                 }
-                <div className={styles.lang} data-lang>
-                    {SelectLang && <SelectLang />}
-                </div>
+                <ThemeButton />
+                <SelectLang style={{ padding: "0px" }} />
             </Space>
         </div>
     )

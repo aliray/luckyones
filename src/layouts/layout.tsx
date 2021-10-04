@@ -2,11 +2,12 @@
 
 import { Footer, Header } from '@/components/Common';
 import RadioMenu from '@/components/RadioButton';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useModel } from 'umi';
 import styles from './index.less';
 import moment from 'moment';
 import NavNotice from '@/components/Common/NavNotice';
+import { Div } from '@/components/Html';
 
 const Lottery: React.FC = (props) => {
     const menus = [
@@ -18,16 +19,16 @@ const Lottery: React.FC = (props) => {
     const bgcolors = {
         "/lottery": 'container_bg_lottery',
         "/lottery/user/trades": 'container_bg_lottery',
-        "/lottery/rules": 'container_bg_rules'
+        "/lottery/rules": 'container_bg_lottery'
     }
 
     const { curRenderLottery } = useModel("lottery");
     const location = useLocation();
-
     useEffect(() => { console.log(styles) }, [])
 
     return (
-        <div className={`${styles.container} ${bgcolors[location.pathname]}`}>
+
+        <Div classNames={["container", String(bgcolors[location.pathname])]} lessStyles={styles}>
             <Header />
             <div className={styles.content}>
                 {
@@ -39,7 +40,7 @@ const Lottery: React.FC = (props) => {
                 }
             </div>
             <Footer />
-        </div >
+        </Div >
     );
 };
 

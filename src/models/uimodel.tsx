@@ -85,7 +85,16 @@ export default function uimodel() {
         }, [tickets]
     )
 
+    /**
+     * theme dark light:default
+     */
+    const [theme, setTheme] = useState("")
+    const toogleTheme = (type: string) => {
+        setTheme(type)
+    }
+
     return {
+        theme, toogleTheme,
         ticketsUi, openTicketsUi, closeTicketsUi,
         purchaseVisible, tickets, cost, approved, approving, payloading,
         loadingNumbers, gnumbers, refreshNumbers, setNnumbers, setRefreshNumbers,

@@ -11,10 +11,8 @@ import { NoticeError, NoticeSuccess } from '../Notice'
 import SalesInfo from '../SalesInfo'
 import TicketsCount from '../TicketsCount'
 import styles from './index.less'
-import { sleep } from '@/utils/tools'
 
 const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...props }) => {
-    const intl = useIntl()
 
     const { address, web3 } = useModel("web3Model", (ret) => ({
         address: ret.status?.address,
@@ -51,16 +49,11 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
             if (address && web3) {
                 if (tickets > 0 && tickets <= maxTickets && cost <= Number(balanceOfUsdt)) {
                     setPayloading(true)
-                    const numbers = generateLottoNumbers({
-                        numberOfTickets: tickets,
-                        lottoSize,
-                        maxRange
-                    })
                     const tx = await buyLottTickets(
                         address,
                         currentLotteryId,
                         tickets,
-                        numbers,
+                        gnumbers,
                         NETWORK_TYPE,
                         web3,
                         paysucccess,

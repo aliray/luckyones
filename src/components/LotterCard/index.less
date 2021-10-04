@@ -52,7 +52,6 @@
     text-align : left;
 }
 
-
 .card_content {
     position        : relative;
     display         : flex;
@@ -63,23 +62,6 @@
     min-height      : 200px;
     align-items     : center;
     padding         : 30px;
-}
-
-@keyframes buyBtnRotateY {
-    0% {
-        transform: rotate(-7deg);
-    }
-
-    100% {
-        transform: rotate(7deg);
-    }
-}
-
-.buyBtnDiv {
-    animation                  : buyBtnRotateY 1.5s infinite;
-    animation-direction        : alternate;
-    -webkit-animation-direction: alternate;
-    /* Safari 和 Chrome */
 }
 
 .title {
@@ -119,9 +101,20 @@
 
 }
 
-.rewards_rewards {
-    font-size  : large;
-    color      : #280D5F;
-    text-align : left;
-    font-weight: lighter;
+// 动画button 
+@keyframes buyBtnRotateY {
+    0% {
+        transform: rotate(-7deg);
+    }
+
+    100% {
+        transform: rotate(7deg);
+    }
+}
+
+.buyBtnDiv {
+    animation                  : buyBtnRotateY 1.5s infinite;
+    animation-direction        : alternate;
+    -webkit-animation-direction: alternate;
+    /* Safari 和 Chrome */
 }
