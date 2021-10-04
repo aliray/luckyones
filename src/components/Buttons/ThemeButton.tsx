@@ -7,11 +7,10 @@ const ThemeButton: React.FC = (props) => {
 
     const { theme, toogleTheme } = useModel("uimodel")
     return (
-        // <HiOutlineSun />,
         <a style={{ fontSize: "25px" }}>
             {
-                theme === "dark" ? <HiOutlineSun onClick={() => { toogleTheme("") }} /> :
-                    <HiSun onClick={() => { toogleTheme("dark") }} />
+                theme === "dark" ? <HiSun onClick={() => { toogleTheme("") }} /> :
+                    <HiOutlineSun onClick={() => { toogleTheme("dark") }} />
             }
         </a>
     )

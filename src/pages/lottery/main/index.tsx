@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import LotteryCard from '@/components/LotterCard'
 import LotteryCardContent from '@/components/LotterCard/CardContent'
 import RewardsRules from '@/components/LotterCard/RewardsRule'
