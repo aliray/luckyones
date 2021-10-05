@@ -8,6 +8,7 @@ import styles from './index.less';
 import moment from 'moment';
 import NavNotice from '@/components/Common/NavNotice';
 import { Div } from '@/components/Html';
+import { WavesBg } from '@/components/BackGroundSvg';
 
 const Lottery: React.FC = (props) => {
     const menus = [
@@ -29,6 +30,7 @@ const Lottery: React.FC = (props) => {
     return (
 
         <Div classNames={["container", String(bgcolors[location.pathname])]} lessStyles={styles}>
+            <WavesBg />
             <Header />
             <div className={styles.content}>
                 {
