@@ -64,7 +64,7 @@ const RewardsRules: React.FC = (props) => {
                         <RewardsStatistic
                             ruletips={`已售出`}
                             rewards={totalTickets}
-                            rp={`张彩票`}
+                            rp={`实时数据`}
                         />
                     </Col>
                 </Row>

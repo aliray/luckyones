@@ -21,11 +21,7 @@ const MoneyTips: React.FC<{
                             : null
                     }
                     <span style={{ fontSize: s1, ...mstyle, color: "#280D5F", fontWeight: "lighter" }}>
-                        {/* {intl.formatNumber(money)} */}
-                        <RewardsTips value={Number(money)} />
-                    </span>
-                    <span style={{ fontSize: s2 }}>
-                        &nbsp;{unit}
+                        <RewardsTips value={Number(money)} unit={unit} size={s1}/>
                     </span>
                 </span>
             </>
@@ -53,7 +49,7 @@ const UnitipsNormal: React.FC<{ prefix?: any, value: any, unit?: string }> = ({ 
 
 const MoneyTipsStatistic: React.FC<{ prefix?: any, money: any, unit?: string }> = ({ prefix, money, unit = "$", ...props }) => {
     return (
-        <MoneyTips money={money} s1="20px" s2="10px" unit={unit} prefix={prefix} />
+        <MoneyTips money={money} s1="20" s2="10px" unit={unit} prefix={prefix} />
     );
 }
 
