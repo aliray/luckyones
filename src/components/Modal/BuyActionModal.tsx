@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NETWORK_TYPE } from '@/utils/constants'
-import { generateLottoNumbers, intervalTimeout, numberToGweiBN } from '@/utils/tools'
+import { intervalTimeout, numberToGweiBN } from '@/utils/tools'
 import { buyLottTickets, callApprove } from '@/utils/web3Utils'
 import { InputNumber, Modal } from 'antd'
 import React, { useEffect } from 'react'
-import { useIntl, useModel } from 'umi'
+import { useModel } from 'umi'
 import EnableButton from '../Buttons/EnableButton'
-import { MoneyTipsNormal } from '../MoneyTips'
 import { NoticeError, NoticeSuccess } from '../Notice'
 import SalesInfo from '../SalesInfo'
 import TicketsCount from '../TicketsCount'
+import RewardsTips from '../Tools/RewardsTips'
 import styles from './index.less'
 
 const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...props }) => {
@@ -148,9 +148,9 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                     maxLength={7}
                 />
                 <div className={styles.modal_row}>
-                    <MoneyTipsNormal money={balanceOfUsdt} unit={`余额 ${symbol}`} />
+                    <RewardsTips value={Number(balanceOfUsdt)} unit={`余额 ${symbol || "$"}`} />
                     <div style={{ marginLeft: "auto" }}>
-                        <MoneyTipsNormal money={Number(cost) || 0} unit={`费用 ${symbol}`} />
+                        <RewardsTips value={Number(cost) || 0} unit={`费用 ${symbol || "$"}`} />
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@ const BuyActionModal: React.FC<{ visible, cancel }> = ({ visible, cancel, ...pro
                 <TicketsCount count={tickets} editable={true} numbers={gnumbers} loading={loadingNumbers} />
                 <EnableButton buyfn={payTickets} approvefn={approveContract} />
             </div>
-            <SalesInfo maxTickets symbol ticketPrice={currentLottery.ticketPrice} />
+            <SalesInfo maxTickets={maxTickets} symbol={symbol} ticketPrice={currentLottery.ticketPrice} />
         </Modal>
     )
 }

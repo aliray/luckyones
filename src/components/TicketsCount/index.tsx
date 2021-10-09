@@ -1,6 +1,5 @@
 import { Popover, Spin } from 'antd';
 import React from 'react';
-import { UnitipsNormal } from '../MoneyTips';
 import Numbers from '../Numbers';
 import styles from './index.less';
 
@@ -16,7 +15,7 @@ const TicketsCount: React.FC<{
         >
             <Spin spinning={loading}>
                 <a className={styles.ticket_a}>
-                    {count}张彩票
+                    <span className={styles.tickets_font}>{count}</span>张彩票
                 </a>
             </Spin>
         </Popover>

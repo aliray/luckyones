@@ -40,7 +40,7 @@ const ToolsBuuton: React.FC<{ address: string, eth: number }> = ({ address, eth 
         <div className={styles.tools_button}>
             <Space>
                 <a className={styles.button_item}>
-                    {eth} ETH
+                    {eth.toFixed(4)} ETH
                 </a>
                 <a className={styles.button_item} style={{ backgroundColor: "#722ED1", fontSize: "small", padding: "6px" }}>
                     {address}

@@ -23,7 +23,7 @@ const RewardsTips: React.FC<{ size?: string, value?: number, unit?: string }> = 
             <animated.span className={styles.rewards} style={{ fontSize: Number(size) }} >
                 {tips.to(n => n.toFixed(0))}
             </animated.span>
-            <span style={{ fontSize: Number(size) / 3 }}>&nbsp;{unit && "$"}</span>
+            <span style={{ fontSize: Number(size) / 3 }}>&nbsp;{unit || "$"}</span>
         </div>
     )
 }

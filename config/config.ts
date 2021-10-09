@@ -31,7 +31,7 @@ export default defineConfig({
     baseNavigator: false,
   },
   dynamicImport: {
-    loading: '@ant-design/pro-layout/es/PageLoading',
+    loading: '@/components/PageLoading' //'@ant-design/pro-layout/es/PageLoading',
   },
   targets: {
     ie: 11,

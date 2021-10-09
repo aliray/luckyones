@@ -35,36 +35,13 @@ export default function lottery() {
         setCurrentRenderRewards(Number(tempLotteries[0]?.totalTickets || 0) * Number(tempLotteries[0]?.ticketPrice || 0))
     }
 
-    const nextLottery = async () => {
-        const curId = curRenderLottery?.id;
-        lotteries.map((v, i) => {
-            if (v.id === String(parseInt(curId, 10) + 1)) {
-                setCurRenderLottery(lotteries[i]);
-                setCurrentRenderRewards(Number(lotteries[i]?.totalTickets || 0) * Number(lotteries[i]?.ticketPrice || 0))
+    const pageTurn = async (lotteryId) => {
+        lotteries.forEach(v => {
+            if (v.id === String(lotteryId)) {
+                setCurRenderLottery(v)
+                setCurrentRenderRewards(Number(v?.totalTickets || 0) * Number(v?.ticketPrice || 0))
             }
-            return null;
-        });
-    }
-
-    const lastLottery = async () => {
-        const curId = curRenderLottery?.id;
-        lotteries.map((v, i) => {
-            if (v.id === String(parseInt(curId, 10) - 1)) {
-                setCurRenderLottery(lotteries[i]);
-                setCurrentRenderRewards(Number(lotteries[i]?.totalTickets || 0) * Number(lotteries[i]?.ticketPrice || 0))
-            }
-            return null;
-        });
-    }
-
-    const backToCurLottery = async () => {
-        lotteries.map((v, i) => {
-            if (v.id === String(currentLottery.id)) {
-                setCurRenderLottery(lotteries[i]);
-                setCurrentRenderRewards(Number(lotteries[i]?.totalTickets || 0) * Number(lotteries[i]?.ticketPrice || 0))
-            }
-            return null;
-        });
+        })
     }
 
     // 
@@ -141,10 +118,8 @@ export default function lottery() {
         balanceOfUsdt, maxTickets, symbol, maxRange, allowance, lottoSize,
         queryLotteries,
         setLoadingLottery,
-        nextLottery,
-        lastLottery,
-        backToCurLottery,
-        getLotteryInfo
+        getLotteryInfo,
+        pageTurn
     }
 
 }

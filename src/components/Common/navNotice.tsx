@@ -14,18 +14,15 @@ const NavNotice: React.FC = () => {
 
     return (
         <div className={styles.nav_content}>
-            <span style={{ fontSize: "larger" }}>
-                #{roundId}&nbsp;回合倒计时 &nbsp;
-            </span>
             <Statistic.Countdown
                 value={Number(endTime)}
                 format="HH:mm:ss"
-                valueStyle={{ color: "#C71FCD", fontSize: "xxx-large" }}
+                valueStyle={{ color: "#280D5F" }}
             />
             <span style={{ fontSize: "large" }}>
-                &nbsp;奖金池&nbsp;
+                &nbsp;总奖金池
             </span>
-            <RewardsTips size="xxx-large" value={currentRewards} />
+            <RewardsTips value={currentRewards} unit="$"/>
         </div>
     );
 }

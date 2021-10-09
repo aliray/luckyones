@@ -9,6 +9,7 @@ import moment from 'moment';
 import NavNotice from '@/components/Common/NavNotice';
 import { Div } from '@/components/Html';
 import { WavesBg } from '@/components/BackGroundSvg';
+import { WavesStars } from '@/components/BgStars';
 
 const Lottery: React.FC = (props) => {
     const menus = [
@@ -31,12 +32,16 @@ const Lottery: React.FC = (props) => {
 
         <Div classNames={["container", String(bgcolors[location.pathname])]} lessStyles={styles}>
             <WavesBg />
+            {/* <WavesStars /> */}
             <Header />
             <div className={styles.content}>
-                {
-                    curRenderLottery && moment(Number(curRenderLottery?.endTime)).isAfter(moment.now()) && <NavNotice />
-                }
-                <RadioMenu values={menus} />
+                <div className={styles.menu_header}>
+                    <RadioMenu values={menus} />
+                    <NavNotice />
+                    {/* {
+                        curRenderLottery && moment(Number(curRenderLottery?.endTime)).isAfter(moment.now()) && <NavNotice />
+                    } */}
+                </div>
                 {
                     props.children
                 }

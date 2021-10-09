@@ -1,5 +1,24 @@
 @import '~antd/es/style/themes/default.less';
 
+.rules_main {
+    display          : flex;
+    width            : 800px;
+    // padding       : 30px;
+    flex-direction   : column;
+}
+
+.rules_row {
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : flex-start;
+    flex           : 1 1;
+}
+
+.p_rules {
+    padding: 24px;
+}
+
 .extral_tips {
     font-size  : 11px;
     font-weight: bolder;
@@ -7,7 +26,7 @@
 }
 
 .title {
-    font-size  : x-large;
+    font-size  : large;
     font-weight: bolder;
     color      : @primary-color;
 }
@@ -19,20 +38,18 @@
 }
 
 .content {
-    font-size     : 15px;
-    // font-weight: bolder;
-    color         : #531dab;
+    font-size: 15px;
+    color    : #3b0697;
 }
 
 .list_tips {
-    font-size       : 15px;
-    font-weight     : bolder;
-    color           : @primary-color;
-    width           : 24px;
-    height          : 24px;
-    flex            : 1;
-    text-align      : center;
-    // border-radius: 20px;
+    font-size  : 15px;
+    font-weight: bolder;
+    color      : @primary-color;
+    width      : 24px;
+    height     : 24px;
+    flex       : 1;
+    text-align : center;
 }
 
 .smball {}
@@ -40,11 +57,3 @@
 .divider {
     background-color: #B1A2D4;
 }
-
-// :global {
-//     .none_bgcard {
-//         .ant-pro-card {
-//             background-color: transparent;
-//         }
-//     }
-// }

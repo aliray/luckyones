@@ -8,9 +8,10 @@ import { gweiToDecimalNumber, sleep } from '@/utils/tools'
 import { UserLotteriesEntity } from '@/utils/types'
 
 export default function users() {
-    const { address, web3 } = useModel("web3Model", (ret) => ({
+    const { address, web3, chainId } = useModel("web3Model", (ret) => ({
         address: ret.status?.address,
-        web3: ret.status?.web3
+        web3: ret.status?.web3,
+        chainId: ret.status?.chainId
     }))
     const [userLotteries, setUserLotteries] = useState<UserLotteriesEntity>(null)
     const [balanceOfEth, setBalance] = useState(0)
@@ -62,7 +63,7 @@ export default function users() {
             queryUserLotteries()
             queryUserBalance()
         }
-    }, [address])
+    }, [address, chainId])
 
     return {
         loadingUsersLotteries, userLotteries, curRoundId, balanceOfEth, rounds, getUserTicketsCount, getUserTicketsNumber, pageTurn
